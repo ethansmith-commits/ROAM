@@ -1,3 +1,4 @@
+
 print(r"""
 ██████╗          \  |  /        █████╗   ███╗   ███╗
 ██╔══██╗       -- ▄████▄ --     ██╔══██╗  ████╗ ████║
@@ -7,11 +8,28 @@ print(r"""
 ╚═╝  ╚═╝                        ╚═╝  ╚═╝  ╚═╝     ╚═╝
 """)
 print("welcome to ROAM")
-
+print("choose your character if your human you get choice of pets\n")
+print("1. Human")
+print("2. Hybrid")
+print("3. Cyborg")
+print("4. Alien")
+print("input the number to select your option\n")
+choice = input()
+if choice == '1':
+    print("")
 import sys
 
+def show_human_hero():
+    faction = "Human"
+    title = "Child Of The Tide"
+    lore = "A descendant of ancient Caribbean guardians. Their teachings are passed down from generation to generation."
+    strengths = "Nature affinity, Diplomacy , Creature bonding, Passive to humans."
+    weaknesses = "lower tech resistance, Least passive to aliens ,tech attacks."
+    ability = "Soul Wave (This allows the user to calm down hostile creatures)."
+
+
 def show_hybrid_hero():
-   
+
     faction = "Hybrid"
     title = "The Alone"
     lore = "Half human, half extraterrestrial, infused with cutting-edge coral tech."
@@ -19,74 +37,41 @@ def show_hybrid_hero():
     weaknesses = "Abilities cost more energy. Hated by all except hybrids. Spiritual attacks."
     ability = "Morph Tide (Temporarily allows the user to become one of the other 4 characters)."
 
+def show_cyborg_hero():
 
+    faction = "Cyborg"
+    title = "Chrome Mariner"
+    lore = "Built from coral tech and nanometal salvaged from the old world ."
+    strengths = "High Defense,Scanning, Hacking, Passive to Cyborgs"
+    weaknesses = " vulnerable to water based anomalies, least passive to hybrids, tidal attacks"
+    ability = "signature ability: Pulse scan- reveals hidden paths "
+if __name__ == "__main__":
+
+
+    if choice == '1':
+        print("Human", "Child Of The Tide" ,show_human_hero ())
+    elif choice == '2':
+        print("Hybrid", "The Alone", show_hybrid_hero())
+    elif choice == '3':
+        print("Cyborg", "Chrome Mariner", show_cyborg_hero())
+    elif choice == '4':
+        print("Alien", "Drifter From The Nebulae", show_alien_hero())
+        print("\nExiting Character Encyclopedia. Goodbye!")
+    sys.exit()
+else:
+    print("\n[Invalid choice! Please enter a number between 1 and 4.]")
 
     print("==================================================")
-    print(" CHARACTER PROFILE: " + faction)
+    print(" CHARACTER PROFILE: " +faction)
     print(" DESIGNATION: " + title)
     print("==================================================")
     print("LORE: " + lore)
-    print("") 
+    print("")
     print("STRENGTHS: " + strengths)
     print("WEAKNESSES: " + weaknesses)
     print("SIGNATURE MOVE: " + ability)
-    print("==================================================")_)
+    print("==================================================")
 
-
-if __name__ == "__main__":
-    show_hybrid_hero()
-
-if choice == '1':
-            display_character("hybrid", "The Alone", show_hybrid_hero())
-        elif choice2 == '2':
-            display_creature("human", "Child Of The Tide", show_human_hero)
-        elif choice2 == '3':
-            display_creature("", "Steel / Tech", get_shellshoka)
-        elif choice2 == '4':
-            display_creature("JUMBIE SPRITE", "Spirit / Cosmic", get_jumbie_sprite)
-        elif choice2 == '5':
-            display_creature("RAYBREEZE", "Tide / Wind", get_raybreeze)
-        elif choice2 == '6':
-            print("\nExiting Encyclopedia. Goodbye!")
-            sys.exit()
-        else:
-            print("\n[Invalid choice! Please enter a number between 1 and 4.]")
-
-def get_bloom_tyrant():
-    return (r"""
-
-                      / \ /       \ / \
-                 ..  |   |  * * *  |   |  ..
-                :  '. \   \       /   / .'  :
-                 ':  '-'---'--.--'---'-'  :'
-                   `'-..__  ((~))  __..-'`
-                _      __.'  (_)  '.__      _
-             .-" | _.-' )'.       .'( '-._ | "-.
-
-            |    .'    /   '-._.-'   \    '.    |
-             '-./    .'      .-.      '.    \.-'
-               /   .'       /   \       '.   \
-              /  .'        | * * |        '.  \
-
-             |  /           \   /           \  |
-              \/             '-'             \/
-              /       _               _       \
-
-             |       / |    _ _ _    | \       |
-             |      |  |   (_|_|_)   |  |      |
-              \     |  |    _|_|_    |  |     /
-               \     \  \  (_|_|_)  /  /     /
-                '-._  \  \   | |   /  /  _.-'
-                    `'-_\_ \_| |_/ _/_'-`
-                          `""\___/""`
-
-                             |   |
-                             |   |
-                            /     \
-
-                           |       |
-                            \_____/
-""")
 
 def get_flamingo():
     return (r"""
@@ -233,35 +218,34 @@ def display_creature(name, types, art_function):
 def main_menu():
     while True:
         print("\n" + "=" * 50)
-        print("    ISLE OF CALYPSO BLOOM - CREATURE ENCYCLOPEDIA")
+        print("    ROAM - CREATURE ENCYCLOPEDIA")
         print("=" * 50)
-        print("1. Bloom Tyrant")
-        print("2. Flamingo")
-        print("3. Shellshoka")
-        print("4. Jumbie Sprite")
-        print("5. Raybreeze")
-        print("6. Exit")
+        print("1. Flamingo")
+        print("2. Shellshoka")
+        print("3. Jumbie Sprite")
+        print("4. Raybreeze")
+        print("5. Exit")
         print("=" * 50)
-        
-        choice2 = input("Select a creature to view (1-6): ").strip()
-        
+
+        choice2 = input("Select a creature to view (1-5): ").strip()
+
         if choice2 == '1':
-            display_creature("BLOOM TYRANT", "Tide / Spirit", get_bloom_tyrant)
+            print("FLAMINGO (Pyro Variant)", "Flare / Wind", get_flamingo)
         elif choice2 == '2':
-            display_creature("FLAMINGO (Pyro Variant)", "Flare / Wind", get_flamingo)
+            print("SHELLSHOKA", "Steel / Tech", get_shellshoka)
         elif choice2 == '3':
-            display_creature("SHELLSHOKA", "Steel / Tech", get_shellshoka)
+            print("JUMBIE SPRITE", "Spirit / Cosmic", get_jumbie_sprite)
         elif choice2 == '4':
-            display_creature("JUMBIE SPRITE", "Spirit / Cosmic", get_jumbie_sprite)
+            print("RAYBREEZE", "Tide / Wind", get_raybreeze)
         elif choice2 == '5':
-            display_creature("RAYBREEZE", "Tide / Wind", get_raybreeze)
-        elif choice2 == '6':
-            print("\nExiting Encyclopedia. Goodbye!")
+            print("\nExiting creature Encyclopedia. Goodbye!")
             sys.exit()
         else:
-            print("\n[Invalid choice! Please enter a number between 1 and 6.]")
+            print("\n[Invalid choice! Please enter a number between 1 and 5.]")
 
 if __name__ == "__main__":
     main_menu()
 
- 
+
+
+
