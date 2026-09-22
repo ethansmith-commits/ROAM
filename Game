@@ -45,6 +45,15 @@ def show_cyborg_hero():
     strengths = "High Defense,Scanning, Hacking, Passive to Cyborgs"
     weaknesses = " vulnerable to water based anomalies, least passive to hybrids, tidal attacks"
     ability = "signature ability: Pulse scan- reveals hidden paths "
+
+def show_alien_hero():
+    faction = "Alien"
+    tile = "Drifter From The Nebulae"
+    lore = ""
+    strengths = ""
+    weakness = ""
+    ability = ""
+
 if __name__ == "__main__":
 
 
