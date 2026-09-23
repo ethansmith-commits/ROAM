@@ -1,3 +1,11 @@
+import os
+import sys
+
+def restart_program():
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
+
+
 
 print(r"""
 ██████╗          \  |  /        █████╗   ███╗   ███╗
@@ -14,73 +22,122 @@ print("2. Hybrid")
 print("3. Cyborg")
 print("4. Alien")
 print("input the number to select your option\n")
-choice = input()
-if choice == '1':
+choice_0 = input()
+if choice_0 == '1':
     print("")
-import sys
+
 
 def show_human_hero():
-    faction = "Human"
-    title = "Child Of The Tide"
-    lore = "A descendant of ancient Caribbean guardians. Their teachings are passed down from generation to generation."
-    strengths = "Nature affinity, Diplomacy , Creature bonding, Passive to humans."
-    weaknesses = "lower tech resistance, Least passive to aliens ,tech attacks."
-    ability = "Soul Wave (This allows the user to calm down hostile creatures)."
+    return {
+        "faction": "Human",
+        "title": "Child Of The Tide",
+        "lore": "A descendant of ancient Caribbean guardians. Their teachings are passed down from generation to generation.",
+        "strengths": "Nature affinity, Diplomacy, Creature bonding, Passive to humans.",
+        "weaknesses": "lower tech resistance, Least passive to aliens, tech attacks.",
+        "ability": "Soul Wave (This allows the user to calm down hostile creatures)."
+    }
 
 
 def show_hybrid_hero():
+    return {
+        "faction": "Hybrid",
+        "title": "The Alone",
+        "lore": "Half human, half extraterrestrial, infused with cutting-edge coral tech.",
+        "strengths": "Really good stats. Able to traverse all lands. Passive to Hybrids.",
+        "weaknesses": "Abilities cost more energy. Hated by all except hybrids. Spiritual attacks.",
+        "ability": "Morph Tide (Temporarily allows the user to become one of the other 4 characters)."
+    }
 
-    faction = "Hybrid"
-    title = "The Alone"
-    lore = "Half human, half extraterrestrial, infused with cutting-edge coral tech."
-    strengths = "Really good stats. Able to traverse all lands. Passive to Hybrids."
-    weaknesses = "Abilities cost more energy. Hated by all except hybrids. Spiritual attacks."
-    ability = "Morph Tide (Temporarily allows the user to become one of the other 4 characters)."
 
 def show_cyborg_hero():
+    return {
+        "faction": "Cyborg",
+        "title": "Chrome Mariner",
+        "lore": "Built from coral tech and nanometal salvaged from the old world.",
+        "strengths": "High Defense, Scanning, Hacking, Passive to Cyborgs",
+        "weaknesses": "vulnerable to water based anomalies, least passive to hybrids, tidal attacks",
+        "ability": "Pulse scan - reveals hidden paths"
+    }
 
-    faction = "Cyborg"
-    title = "Chrome Mariner"
-    lore = "Built from coral tech and nanometal salvaged from the old world ."
-    strengths = "High Defense,Scanning, Hacking, Passive to Cyborgs"
-    weaknesses = " vulnerable to water based anomalies, least passive to hybrids, tidal attacks"
-    ability = "signature ability: Pulse scan- reveals hidden paths "
 
 def show_alien_hero():
+    return {
+        "faction": "Alien",
+        "title": "Drifter From The Nebulae",
+        "lore": "Crash-landed near Trinidad’s floating sky-reef",
+        "strengths": "Telepathy, Levitation, Cosmic attacks, Passive to Aliens",
+        "weaknesses": "low resistance to caribbean fauna, Least passive to humans, flare attacks",
+        "ability": "Astral echo communicates with ancient island spirits. Allowing for an extra dice roll when used"
+    }
 
-    faction = "Alien"
-    tile = "Drifter From The Nebulae"
-    lore = "Crash-landed near Trinidad’s floating sky-reef"
-    strengths = "Telepathy, Levitation, Cosmic attacks, Passive to Aliens"
-    weakness = "low resistance to caribbean fauna, Least passive to humans ,flare attacks"
-    ability = "Astral echo communicates with ancient island spirits. Allowing for and extra dice roll when used"
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
+    print("welcome to ROAM")
+    print("choose your character if your human you get choice of pets\n")
+    print("1. Human")
+    print("2. Hybrid")
+    print("3. Cyborg")
+    print("4. Alien")
+    print("input the number to select your option\n")
 
-    if choice == '1':
-        print("Human", "Child Of The Tide" ,show_human_hero ())
-    elif choice == '2': 
-        print("Hybrid", "The Alone", show_hybrid_hero())
-    elif choice == '3':
-        print("Cyborg", "Chrome Mariner", show_cyborg_hero())
-    elif choice == '4':
-        print("Alien", "Drifter From The Nebulae", show_alien_hero())
-        print("\nExiting Main Character Encyclopedia. Goodbye!")
-    sys.exit()
+
+    def main_menu_1():
+        print("--- Creature Encyclopedia ---")
+        choice = input("Press 'r' to restart this menu, or 'q' to quit: ")
+        return choice
+    if __name__ == "__main__":
+        while True:
+            user_action = main_menu_1()
+
+            if user_action.lower() == 'q' or 'r':
+                print("Goodbye!")
+                break
+print("\n" * 3 + "--- Resetting Menu ---")
+choice_0 = input()
+hero_data = None
+
+
+if choice_0 == '1':
+    hero_data = show_human_hero()
+elif choice_0 == '2':
+    hero_data = show_hybrid_hero()
+elif choice_0 == '3':
+    hero_data = show_cyborg_hero()
+elif choice_0 == '4':
+    hero_data = show_alien_hero()
 else:
     print("\n[Invalid choice! Please enter a number between 1 and 4.]")
 
-    print("==================================================")
-    print(" CHARACTER PROFILE: " +faction)
-    print(" DESIGNATION: " + title)
-    print("==================================================")
-    print("LORE: " + lore)
-    print("") 
-    print("STRENGTHS: " + strengths)
-    print("WEAKNESSES: " + weaknesses)
-    print("SIGNATURE MOVE: " + ability)
-    print("==================================================")
 
+    print("=" * 50)
+    print(" CHARACTER PROFILE: " + hero_data["faction"])
+    print(" DESIGNATION: " + hero_data["title"])
+    print("=" * 50)
+    print("LORE: " + hero_data["lore"])
+    print("")
+    print("STRENGTHS: " + hero_data["strengths"])
+    print("WEAKNESSES: " + hero_data["weaknesses"])
+    print("SIGNATURE MOVE: " + hero_data["ability"])
+    print("=" * 50)
+
+    print("\nExiting Main Character Encyclopedia. Goodbye!")
+
+
+def main_menu_2():
+    print("\n" + "=" * 50)
+    print("    ROAM - CREATURE ENCYCLOPEDIA")
+    print("=" * 50)
+    print("1. Flamingo")
+    print("2. Shellshoka")
+    print("3. Jumbie Sprite")
+    print("4. Raybreeze")
+    print("5. Exit")
+    print("=" * 50)
+choice=input()
+if choice!=[1-5]:
+    print("invalid option")
+if choice==1:
+    main_menu()
 
 def get_flamingo():
     return (r"""
@@ -126,6 +183,7 @@ def get_flamingo():
                   /_  /_     /_  /_
 """)
 
+
 def get_shellshoka():
     return (r"""
                      ||__________
@@ -159,6 +217,7 @@ def get_shellshoka():
                         (_____(_____
 """)
 
+
 def get_jumbie_sprite():
     return (r"""
                      .::'   `::.
@@ -186,6 +245,7 @@ def get_jumbie_sprite():
                        |       |
                         \_____/
 """)
+
 
 def get_raybreeze():
     return (r"""
@@ -224,36 +284,25 @@ def display_creature(name, types, art_function):
     print("=" * 60)
     input("\nPress Enter to return to the main menu...")
 
-def main_menu():
-    while True:
-        print("\n" + "=" * 50)
-        print("    ROAM - CREATURE ENCYCLOPEDIA")
-        print("=" * 50)
-        print("1. Flamingo")
-        print("2. Shellshoka")
-        print("3. Jumbie Sprite")
-        print("4. Raybreeze")
-        print("5. Exit")
-        print("=" * 50)
 
-        choice2 = input("Select a creature to view (1-5): ").strip()
 
-        if choice2 == '1':
-            print("FLAMINGO (Pyro Variant)", "Flare / Wind", get_flamingo)
-        elif choice2 == '2':
-            print("SHELLSHOKA", "Steel / Tech", get_shellshoka)
-        elif choice2 == '3':
-            print("JUMBIE SPRITE", "Spirit / Cosmic", get_jumbie_sprite)
-        elif choice2 == '4':
-            print("RAYBREEZE", "Tide / Wind", get_raybreeze)
-        elif choice2 == '5':
-            print("\nExiting creature Encyclopedia. Goodbye!")
-            sys.exit()
-        else:
-            print("\n[Invalid choice! Please enter a number between 1 and 5.]")
+choice2 = input("Select a creature to view (1-5): ").strip()
 
-if __name__ == "__main__":
-    main_menu()
+if choice2 == '1':
+    display_creature("FLAMINGO (Pyro Variant)", "Flare / Wind", get_flamingo)
+elif choice2 == '2':
+    display_creature("SHELLSHOKA", "Steel / Tech", get_shellshoka)
+elif choice2 == '3':
+    display_creature("JUMBIE SPRITE", "Spirit / Cosmic", get_jumbie_sprite)
+elif choice2 == '4':
+    display_creature("RAYBREEZE", "Tide / Wind", get_raybreeze)
+elif choice2 == '5':
+    display_creature("\nExiting creature Encyclopedia. Goodbye!")
+else:
+    print("\n[Invalid choice! Please enter a number between 1 and 5.]")
+
+
+
 
 
 
