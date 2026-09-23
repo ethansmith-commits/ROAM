@@ -47,25 +47,25 @@ def show_cyborg_hero():
     ability = "signature ability: Pulse scan- reveals hidden paths "
 
 def show_alien_hero():
+
     faction = "Alien"
     tile = "Drifter From The Nebulae"
-    lore = ""
-    strengths = ""
-    weakness = ""
-    ability = ""
+    lore = "Crash-landed near Trinidad’s floating sky-reef"
+    strengths = "Telepathy, Levitation, Cosmic attacks, Passive to Aliens"
+    weakness = "low resistance to caribbean fauna, Least passive to humans ,flare attacks"
+    ability = "Astral echo communicates with ancient island spirits. Allowing for and extra dice roll when used"
 
-if __name__ == "__main__":
-
+if __name__ == "__main__": 
 
     if choice == '1':
         print("Human", "Child Of The Tide" ,show_human_hero ())
-    elif choice == '2':
+    elif choice == '2': 
         print("Hybrid", "The Alone", show_hybrid_hero())
     elif choice == '3':
         print("Cyborg", "Chrome Mariner", show_cyborg_hero())
     elif choice == '4':
         print("Alien", "Drifter From The Nebulae", show_alien_hero())
-        print("\nExiting Character Encyclopedia. Goodbye!")
+        print("\nExiting Main Character Encyclopedia. Goodbye!")
     sys.exit()
 else:
     print("\n[Invalid choice! Please enter a number between 1 and 4.]")
@@ -75,7 +75,7 @@ else:
     print(" DESIGNATION: " + title)
     print("==================================================")
     print("LORE: " + lore)
-    print("")
+    print("") 
     print("STRENGTHS: " + strengths)
     print("WEAKNESSES: " + weaknesses)
     print("SIGNATURE MOVE: " + ability)
