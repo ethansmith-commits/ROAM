@@ -5,15 +5,20 @@ def restart_program():
     python = sys.executable
     os.execl(python, python, *sys.argv)
 
-
-
-print(r"""
-██████╗          \  |  /        █████╗   ███╗   ███╗
-██╔══██╗       -- ▄████▄ --     ██╔══██╗  ████╗ ████║
-██████╔╝         ████████       ███████║  ██╔████╔██║
-██╔══██╗       -- ▀████▀ --     ██╔══██║  ██║╚██╔╝██║
-██║  ██║          /  |  \       ██║  ██║  ██║ ╚═╝ ██║
-╚═╝  ╚═╝                        ╚═╝  ╚═╝  ╚═╝     ╚═╝
+username=input("enter username you would like to be refered to\n when interacting with NPCs"
+age=int(input("enter your age")
+pegi=int(12)
+if age < pegi:
+  print(you are to young")
+sys.exit()
+else:
+  print(r"""
+██████╗          \  |  /       █████╗    ███╗  ███╗
+██╔══██╗      -- ▄████▄ --     ██╔══██╗  ████╗ ████║
+██████╔╝        ████████       ███████║  ██╔████╔██║
+██╔══██╗      -- ▀████▀ --     ██╔══██║  ██║╚██╔╝██║
+██║  ██║         /  |  \       ██║  ██║  ██║ ╚═╝ ██║
+╚═╝  ╚═╝                       ╚═╝  ╚═╝  ╚═╝     ╚═╝
 """)
 print("welcome to ROAM")
 print("choose your character if your human you get choice of pets\n")
@@ -133,14 +138,14 @@ def main_menu_2():
     print("4. Raybreeze")
     print("5. Exit")
     print("=" * 50)
-choice=input()
-if choice!=[1-5]:
+choice_0=input()
+if choice_0!=[1-5]:
     print("invalid option")
-if choice==1:
-    main_menu()
 
-def get_flamingo():
-    return (r"""
+if choice==1:
+    main_menu_2
+
+def get_flamingo():    return (r"""
                      .---.
                     /    |\
 
@@ -293,7 +298,7 @@ if choice2 == '1':
 elif choice2 == '2':
     display_creature("SHELLSHOKA", "Steel / Tech", get_shellshoka)
 elif choice2 == '3':
-    display_creature("JUMBIE SPRITE", "Spirit / Cosmic", get_jumbie_sprite)
+    display_creature("JUMBIE SPRITE", "Spirit / Cosmic", e)
 elif choice2 == '4':
     display_creature("RAYBREEZE", "Tide / Wind", get_raybreeze)
 elif choice2 == '5':
