@@ -19,7 +19,7 @@ else:
 ██╔══██╗      -- ▀████▀ --     ██╔══██║  ██║╚██╔╝██║
 ██║  ██║         /  |  \       ██║  ██║  ██║ ╚═╝ ██║
 ╚═╝  ╚═╝                       ╚═╝  ╚═╝  ╚═╝     ╚═╝
-""")
+ """)
 print("welcome to ROAM")
 print("choose your character if your human you get choice of pets\n")
 print("1. Human")
@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
 
     def main_menu_1():
-        print("--- Creature Encyclopedia ---")
+        print("--- character Encyclopedia ---")
         choice = input("Press 'r' to restart this menu, or 'q' to quit: ")
         return choice
     if __name__ == "__main__":
@@ -103,7 +103,7 @@ hero_data = None
 
 
 if choice_0 == '1':
-    hero_data = show_human_hero()
+    hero_data = show_human_hero() AND main_menu_2()
 elif choice_0 == '2':
     hero_data = show_hybrid_hero()
 elif choice_0 == '3':
@@ -290,6 +290,18 @@ def display_creature(name, types, art_function):
     input("\nPress Enter to return to the main menu...")
 
 
+    def main_menu_2():
+        print("--- creature Encyclopedia ---")
+        choice = input("Press 'r' to restart this menu, or 'q' to quit: ")
+        return choice
+    if __name__ == "__main__":
+        while True:
+            user_action = main_menu_1()
+
+            if user_action.lower() == 'q' or 'r':
+                print("Goodbye!")
+                break
+print("\n" * 3 + "--- Resetting Menu ---")
 
 choice2 = input("Select a creature to view (1-5): ").strip()
 
@@ -302,13 +314,26 @@ elif choice2 == '3':
 elif choice2 == '4':
     display_creature("RAYBREEZE", "Tide / Wind", get_raybreeze)
 elif choice2 == '5':
-    display_creature("\nExiting creature Encyclopedia. Goodbye!")
+    print("\n" main_menu2)
+
+human_stats = {
+    "hp": 100,
+    "max_hp": 100,
+    "attack": 15,
+ }
+if choice_0== 1:
+ print(human_stats) 
+elif:
+ print(hybrid_stats)
+elif:
+ print(cyborg stats)
 else:
-    print("\n[Invalid choice! Please enter a number between 1 and 5.]")
+ print(alien_stats)
 
-
-
-
-
-
-
+print("=" * 50)
+print("Level 1- Isle Of Calypso Bloom”)
+print("A lush futuristic st lucia inspired island with glowing flora")
+print("your quest is stop the corrupted flora on the island")
+rules_1=("Roll 1-3 flora attacks and there's a battle. 4-5 you\n find a rare herb boosting stats and healing you\n. Roll a 6 and a spirit guide guides you. \n Roll a 7 and the boss fight happens/n.Roll and 8 and you move on.You can only move on\ once you defeat the boss 1 time at least"
+print(rules_1)
+print("=" * 50)
