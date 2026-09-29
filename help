@@ -1,0 +1,594 @@
+
+import os
+import sys# the restart sytem
+
+def restart_program():
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
+
+# Get user details
+username = input("Enter username you would like to be referred to\nwhen interacting with NPCs: ")
+age = int(input("Enter your age: "))
+pegi = 12
+
+# Check age rating
+if age < pegi:
+    print("You are too young! Exiting game...")
+    sys.exit()  # Safely closes the program
+
+# Game continues here if they are old enough
+print(sys.argv)
+
+
+print(r"""
+██████╗          \  |  /       █████╗    ███╗  ███╗
+██╔══██╗      -- ▄████▄ --     ██╔══██╗  ████╗ ████║
+██████╔╝        ████████       ███████║  ██╔████╔██║
+██╔══██╗      -- ▀████▀ --     ██╔══██║  ██║╚██╔╝██║
+██║  ██║         /  |  \       ██║  ██║  ██║ ╚═╝ ██║
+╚═╝  ╚═╝                       ╚═╝  ╚═╝  ╚═╝     ╚═╝
+ """)
+print("welcome to ROAM",username)
+
+
+def show_human_hero():# definning human
+    return {
+        "faction": "Human",
+        "title": "Child Of The Tide",
+        "lore": "A descendant of ancient Caribbean guardians. Their teachings are passed down from generation to generation.",
+        "strengths": "Nature affinity, Diplomacy, Creature bonding, Passive to humans.",
+        "weaknesses": "lower tech resistance, Least passive to aliens, tech attacks.",
+        "ability": "Soul Wave (This allows the user to calm down hostile creatures)."
+    }
+
+
+def show_hybrid_hero():# defining hybrid
+    return {
+        "faction": "Hybrid",
+        "title": "The Alone",
+        "lore": "Half human, half extraterrestrial, infused with cutting-edge coral tech.",
+        "strengths": "Really good stats. Able to traverse all lands. Passive to Hybrids.",
+        "weaknesses": "Abilities cost more energy. Hated by all except hybrids. Spiritual attacks.",
+        "ability": "Morph Tide (Temporarily allows the user to become one of the other 4 characters)."
+    }
+
+
+def show_cyborg_hero():# defining cyborg
+    return {
+        "faction": "Cyborg",
+        "title": "Chrome Mariner",
+        "lore": "Built from coral tech and nanometal salvaged from the old world.",
+        "strengths": "High Defense, Scanning, Hacking, Passive to Cyborgs",
+        "weaknesses": "vulnerable to water based anomalies, least passive to hybrids, tidal attacks",
+        "ability": "Pulse scan - reveals hidden paths"
+    }
+
+
+def show_alien_hero():# defining alien
+    return {
+        "faction": "Alien",
+        "title": "Drifter From The Nebulae",
+        "lore": "Crash-landed near Trinidad’s floating sky-reef",
+        "strengths": "Telepathy, Levitation, Cosmic attacks, Passive to Aliens",
+        "weaknesses": "low resistance to caribbean fauna, Least passive to humans, flare attacks",
+        "ability": "regenerates 10 hp can use once per level"
+    }
+def human():
+    print(r"""
+               _....._
+             .'       '.
+            /   O   O   \\
+
+            |           |
+            \\   '---'   /
+             '._______.'
+
+                 | |
+              ___| |___
+           .-'  _   _  '-.
+          /   /| | | |\\   \\
+         /   / | |_| | \\   \\
+        /   /  |     |  \\   \\
+       /   /   |     |   \\   \\
+      /___/    |_____|    \\___\\
+
+               |     |
+               |     |
+               |     |
+               |     |
+               |     |
+               |_____|
+               |  |  |
+               |  |  |
+               |  |  |
+               |  |  |
+             .-'  |  '-.
+            [_____|_____]
+    """)
+
+if __name__ == "__main__":
+    print("welcome to ROAM")
+    print("choose your character if your human you get choice of pets\n")
+    print("1. Human")
+    print("2. Hybrid")
+    print("3. Cyborg")
+    print("4. Alien")
+    print("input the number to select your option\n")
+choice_0 = input()
+hero_data = choice_0
+
+
+def main_menu_2():
+    print("\n" + "=" * 50)
+    print("    ROAM - CREATURE ENCYCLOPEDIA")
+    print("=" * 50)
+    print("1. Flamingo")
+    print("2. Shellshoka")
+    print("3. Jumbie Sprite")
+    print("4. Raybreeze")
+    print("5. Exit")
+    print("=" * 50)
+choice_0=input()
+
+
+def display_hero(name, designation, lore, strengths, weaknesses, signature, art_function=None):
+    print("\n" + "=" * 60)
+    print(f"  HERO PROFILE:   {name}")
+    print(f"  DESIGNATION:    {designation}")
+    print("=" * 60)
+
+    # Displays ASCII art if the hero has one assigned
+    if art_function:
+        print(art_function())
+        print("=" * 60)
+
+    print(f"BACKGROUND / LORE:\n{lore}\n")
+    print(f"STRENGTHS:      {strengths}")
+    print(f"WEAKNESSES:     {weaknesses}")
+    print(f"SIGNATURE MOVE: {signature}")
+    print("=" * 60)
+    input("\nPress Enter to return to the character select menu...")
+
+def display_hero(name, lore, strengths, weaknesses, signature):
+    print("\n" + "=" * 60)
+    print(f"  NAME: {name}")
+    print(f"  lore: {lore}")
+    print(f"  strengths: {strengths}")
+    print(f"  weaknesses: {weaknesses}")
+    print(f"  signature: {signature}")
+    print("=" * 50)
+    input("\nPress Enter to return to the main menu...")
+
+# Menu choice for the hero side
+choice_0 = input("Select a Hero profile to view (1-5): ").strip()
+match choice_0:
+    case "1":
+        display_hero(name="human", lore="A descendant of ancient Caribbean guardians. Their teachings are passed down from generation to generation."
+                     , strengths="Nature affinity, Diplomacy , Creature bonding, Passive to humans "
+                     , weaknesses=" lower tech resistance, Least passive to aliens ,tech attacks"
+                     , signature=" soul wave. This allows the user to calm down hostile creatures.")
+    case "2":
+        display_hero(name="hybrid", lore="Half human ,half extraterrestrial,infused with coral tech."
+                     , strengths="really good stats. Able to traverse all lands. Passive to Hybrids"
+                     , weaknesses=" Abilities cost more energy, Hated by all except hybrids,Spiritual attack"
+                     , signature="Ability: Morph tide- temporally allows the user to become one of the 4 characters temporally.")
+    case "3":
+        display_hero(name="cyborg", lore="", strengths="", weaknesses="", signature="")
+    case "4":
+        display_hero(name="alien", lore="", strengths="", weaknesses="", signature="")
+    case_:
+        print("\n[Invalid option! Please pick a valid hero number.]")
+
+
+
+def main_menu_2():
+    print("\n" + "=" * 50)
+    print("    ROAM - CREATURE ENCYCLOPEDIA")
+    print("=" * 50)
+    print("1. Flamingo")
+    print("2. Shellshoka")
+    print("3. Jumbie Sprite")
+    print("4. Raybreeze")
+    print("5. Exit")
+    print("=" * 50)
+choice_0=input()
+
+if choice_0!=[1-5]:
+    print("invalid option")
+if choice_0 == '1':
+    hero_data = show_human_hero() and main_menu_2()
+elif choice_0 == '2':
+    hero_data = show_hybrid_hero()
+elif choice_0 == '3':
+    hero_data = show_cyborg_hero()
+elif choice_0 == '4':
+    hero_data = show_alien_hero()
+else:
+    print("\n[Invalid choice! Please enter a number between 1 and 4.]")
+
+if choice_0==1:
+    main_menu_2()
+
+def get_flamingo():    
+return (r"""
+                     .---.
+                    /    |\
+
+                   |  /| | \
+                   | | | |  |
+                    \  \_\  /
+                     `-----'
+                       ||
+                       ||
+                       ||
+                      /  \
+                     /    \     .---.
+
+                    |      |   /     \
+                   /        \_/       |  /|
+                  /  \                 |/ |
+
+                 |    \                | /
+                /      '-------'      / /
+
+               |  |\                /  /
+               |  | \              /  /
+                \  \ \            /  /     (
+                 \  \ \          /  /     ) )
+                  \  \ \________/  /     ( (
+                   \  \___________/       ) )
+                    \     \  /    /       ( (
+                     \  \  \/  / /         ) )
+                     /\  \____/ /         (_(  
+                    /  \_______/              
+
+                    |  |       |
+                    |  |       |
+                    |  |       |
+                    |  |       |
+                    |  |       |
+                   /__/       /__/
+
+                   |  |       |  |
+                  /_  /_     /_  /_
+""")
+
+
+def get_shellshoka():
+    return (r"""
+                     ||__________
+                     |            \_______
+                     |  [PLASMA]   _______)===(o) *PEW*
+                     |____________/
+                     /           \
+                 .---'             '---.
+                /                       \
+
+               |   __________________    |
+               |  /                  \   |
+               | |   (o)        (o)   |  |
+               |  \                  /   |
+               |   '----------------'    |
+              /      \____________/       \
+             /                             \
+
+            |   /\                     /\   |
+            |  /  \                   /  \  |
+            | /    |                 |    \ |
+            |/     |                 |     \|
+                   \                 /
+                   /                 \
+                  /  _..         .._  \
+                 (_.'   \       /   '._)
+
+                         |     |
+                         |     |
+                         |     |
+                        (_____(_____
+""")
+
+
+def get_jumbie_sprite():
+    return (r"""
+                     .::'   `::.
+                    :::       :::
+                    :::  o   o  :::
+                    `::.   ^   .::'
+                      `::.   .::'      
+                        `|   |`        
+                    _____|   |_____
+                   /     |   |     \
+
+                  |  /\  |___|  /\  |
+                  | |  |       |  | |
+                  | |  |  [T]  |  | |  
+                  |  \/  |===|  \/  |
+                   \_____|___|_____/
+
+                         |   |
+                         |   |
+                         |   |
+                         |   |
+                         |___|
+                        /     \
+
+                       |       |
+                        \_____/
+""")
+
+
+def get_raybreeze():
+    return (r"""
+                         .---.
+                        /     \
+
+                       |  o o  |
+                       /\  -  /\
+                      /  '-.-'  \
+                 .---'           '---.
+                /                     \
+               /   __             __   \
+              /   /  \           /  \   \    
+             /   /    \         /    \   \   
+            /   /      \       /      \   \
+
+           |   /        |     |        \   |
+           |  /         |  _  |         \  |
+            \/          | | | |          \/
+                         \| |/
+
+                          | |
+                          | |
+                          | |
+                          | |
+                          \ /
+                           V
+""")
+
+def display_creature(name, types, art_function):
+    print("\n" + "=" * 60)
+    print(f"  NAME: {name}")
+    print(f"  TYPE: {types}")
+    print("=" * 60)
+    print(art_function())
+    print("=" * 60)
+    input("\nPress Enter to return to the main menu...")
+
+
+
+
+choice2 = int(input("Select a creature to view (1-5): ").strip())
+
+if choice2 == '1':
+    display_creature("FLAMINGO (Pyro Variant)", "Flare / Wind", get_flamingo)
+elif choice2 == '2':
+    display_creature("SHELLSHOKA", "Steel / Tech", get_shellshoka)
+elif choice2 == '3':
+    display_creature("JUMBIE SPRITE", "Spirit / Cosmic")
+elif choice2 == '4':
+    display_creature("RAYBREEZE", "Tide / Wind", get_raybreeze)
+elif choice2 == '5':
+    print("\n",main_menu_2())
+
+human_stats = {
+    "hp": 80,
+    "max_hp": 80,
+    "attack": 30,
+ }
+hybrid_stats = {
+   "hp": 120,
+   "max_hp": 120,
+    "attack":20
+}
+cyborg_stats = {
+    "hp": 150,
+    "max_hp": 150,
+    "attack":10,
+}
+
+alien_stats = {
+    "hp": 70,
+    "max_hp": 70,
+    "attack":20
+}
+if choice_0== 1:
+  print(human_stats)
+elif choice_0== 2:
+  print(hybrid_stats)
+elif choice_0== 3:
+  print(cyborg_stats)
+else:
+  print(alien_stats)
+
+def get_level1():
+  return("""
+================================================================================
+               🌸  L E V E L  1  :  I S L E  O F  C A L Y P S O  🌸
+================================================================================
+
+              _      _._            _..._            _._      _
+            _(_)_  _(_)_|          |     |          |_(_)_  _(_)_
+           (_)@(_)(_)@(_)          |  _  |          (_)@(_)(_)@(_)
+             (_)\   (_)            |_|_|_|            (_)   /(_)
+               (_)  | |_____________|   |____________| |  (_)
+              _|||||||||||||||||||||||||||||||||||||||||||||_
+             [===============================================]
+             
+               \ \ \   *   ~  g l o w i n g  f l o r a  ~   *   / / /
+                \ \ \                                      / / /
+                 \ \ \        *    🌸    *    🌸    *     / / /
+                  \_\_\_________________________________/_/_/
+
+                      / /                               \ \
+                     / /        ~ ~ ~ ~ ~ ~ ~ ~          \ \
+                    / /        ~ ~ ~ ~ ~ ~ ~ ~ ~          \ \
+___________________/_/________~ ~ ~ ~ ~ ~ ~ ~ ~__________\_\__________________
+                  /            ~ ~ ~ ~ ~ ~ ~             \
+   _/\_/\_/\_    /               ~ ~ ~ ~ ~                \    _/\_/\_/\_
+  /          \  /                                          \  /          \
+ /____________\/____________________________________________\/____________\
+""")
+def get_boss1():
+    return(r"""
+================================================================================
+                                    THE bloom tyrant 
+================================================================================
+                               /|                  |\
+                              / |   _ _      _ _   | \
+
+                             |  |  (   )   (   )  |  |
+                            |  /   \*/     \*/   \  |
+                               \ \_ _ _\ ___ /_ _ _/ /
+                               \_______(=-=)_______/
+                                 _ .----'- -`----. _
+                               /  /     _      \  \
+                              /  /    .' '.     \  \
+                             /  /    /     \     \  \
+
+                           |  |     |   _   |     |  |
+                           |  |     |  (*)  |     |  |
+                          |  |      |   -   |     |  |
+                          |  \      \       /     /  |
+                           \  \      \     /     /  /
+                            \  \      '- -'     /  /
+                              \  \             /  /
+                              \  '- - - - - -'  /
+                               \               /
+                                / . - - - - - . \
+                               / /             \ \
+                              / /               \ \
+
+                             | |                 ||
+                            | |                  | |
+                            | |                  | |
+                             \ \                / /
+                              \ \_ _       _ _/ /
+                               \_______ _______/
+                                      | |
+                                      | |
+                                      | |
+                                      | |
+                               -------------------
+
+                                          
+
+""")
+level2=print(r"""
+================================================================================
+                    ⚡  L E V E L  2  :  S T E E L P A N  C I T Y  ⚡
+================================================================================
+
+         _._._._..___              _..._                     ___.._._._._
+
+        |=========||||   __   _   |     |   _   __   _      ||||=========|
+        |===_=====||||  |  | | |  |     |  | | |  | | |     ||||====_====|
+   _    |==(_)==  ||||  |  | | |  |  _  |  | | |  | | |  _  ||||   (_)== |
+  (_)   |=========||||  |__|_|_|  |_|_|_|  |_|_|__| |_|_|_| ||||=========|
+
+        |_________||||______________________________________||||_________|
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        
+                     [~]  [~]  [~]  [~]  [~]  [~]  [~]  [~]
+
+                     | |  | |  | |  | |  | |  | |  | |  | |
+                    _|_|__|_|__|_|__|_|__|_|__|_|__|_|__|_|_
+
+                   |                                        |
+                   |   (O)   (O)   (O)    (O)   (O)   (O)   |
+                   |     (O)   (O)   (O)    (O)   (O)       |  <- Rhythm Cores
+                   |________________________________________|
+                  /==========================================\
+                 /  ::::::::::::::::::::::::::::::::::::::::  \
+________________/______________________________________________\________________
+               /                                                \
+  _/\_/\_/\_  /     ⚡  N E O N - L I T   M E T R O P O L I S  ⚡   \  _/\_/\_/\_
+ /          \/____________________________________________________\/          \
+/______________________________________________________________________________\
+""")
+def get_boss2():
+    return(r"""
+
+================================================================================
+                                 BASSLINE TITAN
+================================================================================
+
+                              ||           ||
+                              ||           ||
+                           ___||___________||___
+                          [_____________________]
+
+                           |  (o)   ___   (o)  |
+                           |       [___]       |   
+                           |     \_______/     |      
+                           \___________________/
+                           //=======/=\=======\\
+                          //       /   \       \\
+                         ||   /\  |  ⚡  |  /\   ||
+                         ||  /  \  \___/  /  \  ||
+                         ||  \__/        \__/   ||
+                        _||_____________________||_
+                       [___________________________]
+                       /   /                   \   \
+                      /   /                     \   \
+                     /___/                       \___\
+
+                     |___|                       |___|
+
+================================================================================
+""")
+
+level3=print(r"""
+================================================================================
+               🌊  L E V E L  3  :  T H E  A B Y S S A L  B L U E  🌊
+================================================================================
+
+              _      _._            _..._            _._      _
+             \ \    / / |          |     |          | \ \    / /
+              \ \  / /  |          |  _  |          |  \ \  / /
+               \ \/ /   |          |_|_|_|          |   \ \/ /
+             ___)/ /____|___________|   |___________|____\ \(___
+            [===================================================]
+            
+               ~ ~ ~  *   ~  g l o w i n g  t r e n c h e s  ~  *  ~ ~ ~
+              
+                   \      /      \      /      \      /      /
+                    \____/        \____/        \____/      /
+
+                    |    |        |    |        |    |     /
+                    |____|        |____|        |____|    /
+                    
+                     / /           (💎)          \ \   <- Tide Crystal
+                    / /        ~ ~ ~ ~ ~ ~        \ \
+___________________/_/________~ ~ ~ ~ ~ ~ ~________\_\__________________
+                  /            ~ ~ ~ ~ ~ ~             \
+   _/\_/\_/\_    /               ~ ~ ~ ~                \    _/\_/\_/\_
+  /          \  /                                        \  /          \
+ /____________\/__________________________________________\/____________\
+""")
+def get_boss3():
+    return(r"""
+================================================================================
+                           QUEEN ABYSSARA 
+================================================================================
+                                 _...._
+                               .'      '.
+                              /  _    _  \
+
+                             |  (o)  (o)  |   
+                             |   \____/   |      
+                              \          /
+                              /\/\/\/\/\/\
+                             / / / || \ \ \
+                            / / /  ||  \ \ \
+                           / / /   ||   \ \ \
+                          / / /    ||    \ \ \
+                         (_/(_/   (_/     \_)\_)
+   
+================================================================================
+""")
+print("=" * 50)
+print("Level 1- Isle Of Calypso Bloom")
+print("A lush futuristic st lucia inspired island with glowing flora")
+print("your quest is stop the corrupted flora on the island")
+print("Roll 1-3 flora attacks and there's a battle. 4-5 you\n find a rare herb boosting stats and healing you\n. Roll a 6 and a spirit guide guides you. \n Roll a 7 and the boss fight happens/n.Roll and 8 and you move on.You can only move on\n once you defeat the boss 1 time at least")
+print("=" * 50)
