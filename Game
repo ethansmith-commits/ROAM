@@ -95,8 +95,8 @@ def hybrid():
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⣦⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣼⣿⣷⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢱⣦⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣷⠀⠀
 ⠀⠀⠀⠀⣀⣤⣴⣶⣶⣶⣶⣶⣾⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⣤⣴⣶⣶⣶⣶⣶⣾⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⣴⣾⣿⣿⣿⣿⣿⣿⣏⣩⣸⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -571,7 +571,7 @@ ___________________/_/________~ ~ ~ ~ ~ ~ ~ ~ ~__________  \\_\\________________
 def get_boss1():
     return (r"""
 ================================================================================
-🌺T H E  B L O O M  T Y R A N T- a  g i a n t  m u t a t e d  h i b i s c u s 🌺
+🌺T H E  B L O O M  T Y R A N T-  F L O R A   I N F U S E D   B U T T E R F L Y🌺
 ================================================================================
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠲⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠢⣄⣴⠇⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -1016,5 +1016,22 @@ class RPGGameEngine:
             result += "Great Success! The NPC guides you directly to a new weapon!"
         elif final_roll == 8:
             result += "Perfect Success! The NPC guides you to a health recovery spot!"
+def rules():
+    return {
+        "combat rolls": "",
+        "exploration rolls": "Child Of The Tide",
+        "dioloug rolls": "1–2 NPC distrusts you can be high chance of combat\n 3–4 Neutral can be higher chance depending on race and area \n5–6 NPC gives quest item or info\n7 Npc guides your to a weapon\n8 Npc guides you to health 
+",
+        "one life ": "Nature affinity, Diplomacy, Creature bonding, Passive to humans.",
+    }
+
+
+first_time=bool(input("is this your first time playing or do you want a re cap on rules")
+if first_time== yes or true 
+print(rules)
+
+print(show_level1())
+print("welcome to level 1 your first level in this game")
+
 
         return result
