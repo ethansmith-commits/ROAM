@@ -1,26 +1,20 @@
+
 import os
 import sys  # the restart sytem
+import time
+
+
+def clear_screen():
+    #Clears the terminal screen for a cleaner look.
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def restart_program():
+    #"""Restarts the current program."""
+    print("\nRestarting ROAM...")
+    time.sleep(1)
     python = sys.executable
     os.execl(python, python, *sys.argv)
-
-
-# Get user details
-username = input("Enter username you would like to be referred to\nwhen interacting with NPCs: ")
-age = int(input("Enter your age: "))
-pegi = 16
-
-# Check age rating
-if age < pegi:
-    print("You are too young! Exiting game...")
-    sys.exit()  # Safely closes the program
-
-# Game continues here if they are old enough
-print(sys.argv)
-
-import time
 
 
 def terminal_loading_screen():
@@ -28,18 +22,28 @@ def terminal_loading_screen():
     total_steps = 50
 
     for i in range(total_steps + 1):
-        # Build the progress bar string
         percent = (i / total_steps) * 100
         bar = "=" * i + " " * (total_steps - i)
-
-        # \r returns the cursor to the start of the line
         sys.stdout.write(f"\r[{bar}] {percent:.0f}%")
         sys.stdout.flush()
-
-        # Simulate work being done
-        time.sleep(0.05)
-
+        time.sleep(0.03)  # Speed up slightly for testing
     print("\nLoad complete!")
+    time.sleep(0.5)
+
+
+
+# Get user details
+username = input("Enter username you would like to be referred to\nwhen interacting with NPCs: ")
+age = int(input("Enter your age must use number or game will not run : "))
+pegi = 16
+
+# Check age rating
+if age < pegi:
+    print("You are too young! Exiting game...")
+    sys.exit()  # Safely closes the program
+
+
+
 
 
 if __name__ == "__main__":
@@ -135,7 +139,7 @@ def hybrid():
 
 def cyborg():
     return(r"""
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣦⣼⣭⣭⣤⣭⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣦⣼⣭⣭⣤⣭⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⣿⣿⣿⣿⣿⣿⣿⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠈⣽⣿⣿⣿⣿⣿⣽⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -355,17 +359,28 @@ def main_menu_2():
     print("5. Exit")
     print("=" * 50)
 
+def human_stats():
+    return {"hp": 80, "max_hp": 80, "attack": 30}
+
+def hybrid_stats():
+    return{"hp": 120, "max_hp": 120,"attack": 20}
+
+def cyborg_stats():
+    return{"hp": 150,"max_hp": 150,"attack": 10,}
+
+def alien_stats ():
+    return{"hp": 70,"max_hp": 70, "attack": 20}
 
 if choice_0 != [1 - 4]:
     print("invalid option")
 if choice_0 == '1':
-    hero_data = show_human_hero() and main_menu_2()
+    hero_data = show_human_hero() and human_stats() and main_menu_2()
 elif choice_0 == '2':
-    hero_data = show_hybrid_hero()
+    hero_data = show_hybrid_hero() and hybrid_stats()
 elif choice_0 == '3':
-    hero_data = show_cyborg_hero()
+    hero_data = show_cyborg_hero() and cyborg_stats()
 elif choice_0 == '4':
-    hero_data = show_alien_hero()
+    hero_data = show_alien_hero() and alien_stats()
 else:
     print("\n[Invalid choice! Please enter a number between 1 and 4.]")
 
@@ -488,50 +503,43 @@ def display_creature(name, types, art_function):
     print("=" * 60)
     input("\nPress Enter to return to the main menu...")
 
+if choice_0 != 1:
+    print("You chose characters with no pets")
 
-choice2 = int(input("Select a creature to view (1-5)  5 will make you reload the main menu : ").strip())
+if choice2 >=5:
+    print("Reloading the main menu...")
 
-if choice2 == '1':
+if choice2 == 1:
     display_creature("FLAMINGO (Pyro Variant)", "Flare / Wind", get_flamingo)
-elif choice2 == '2':
+elif choice2 == 2:
     display_creature("SHELLSHOKA", "Steel / Tech", get_shellshoka)
-elif choice2 == '3':
+elif choice2 == 3:
     display_creature("JUMBIE SPRITE", "Spirit / Cosmic")
-elif choice2 == '4':
+elif choice2 == 4:
     display_creature("RAYBREEZE", "Tide / Wind", get_raybreeze)
-elif choice2 == '5':
-    print("\n", main_menu_2())
+elif choice2 == 5:
+    print("Reloading main menu...")  # Updated text to match your prompt
 
-human_stats = {
-    "hp": 80,
-    "max_hp": 80,
-    "attack": 30,
-}
-hybrid_stats = {
-    "hp": 120,
-    "max_hp": 120,
-    "attack": 20
-}
-cyborg_stats = {
-    "hp": 150,
-    "max_hp": 150,
-    "attack": 10,
-}
+def human_stats():
+    return {"hp": 80, "max_hp": 80, "attack": 30}
 
-alien_stats = {
-    "hp": 70,
-    "max_hp": 70,
-    "attack": 20
-}
+def hybrid_stats():
+    return{"hp": 120, "max_hp": 120,"attack": 20}
+
+def cyborg_stats():
+    return{"hp": 150,"max_hp": 150,"attack": 10,}
+
+def alien_stats ():
+    return{"hp": 70,"max_hp": 70, "attack": 20}
 
 if choice_0 == 1:
-    print(human_stats)
+    print("here are your stats",human_stats())
 elif choice_0 == 2:
-    print(hybrid_stats)
+    print("here are your stats",hybrid_stats())
 elif choice_0 == 3:
-    print(cyborg_stats)
+    print("here are your stats",cyborg_stats())
 elif choice_0 == 4:
-    print(alien_stats)
+    print("here are your stats",alien_stats())
 else:
     print("invalid option")
 
@@ -965,7 +973,6 @@ def getportal():
 """)
 
 
-import random
 
 import random
 
@@ -1016,22 +1023,57 @@ class RPGGameEngine:
             result += "Great Success! The NPC guides you directly to a new weapon!"
         elif final_roll == 8:
             result += "Perfect Success! The NPC guides you to a health recovery spot!"
-def rules():
-    return {
-        "combat rolls": "",
-        "exploration rolls": "Child Of The Tide",
-        "dioloug rolls": "1–2 NPC distrusts you can be high chance of combat\n 3–4 Neutral can be higher chance depending on race and area \n5–6 NPC gives quest item or info\n7 Npc guides your to a weapon\n8 Npc guides you to health 
-",
-        "one life ": "Nature affinity, Diplomacy, Creature bonding, Passive to humans.",
-    }
+def CR():
+    return(r"""
+Dice Mechanics Combat Rolls (D8)
+1–2: Miss / enemy hits
+3–4: Normal hit
+5: Strong hit
+6: Critical hit + ability trigger
+7-8 boss fight
+""")
+
+def ER():
+    return(r"""
+Low roll: Hazard or enemy encounter 
+Mid roll: Neutral event finding an NPC
+High roll: Rare item, creature, or lore discover
+""")
+
+def DR():
+    return(r"""
+1–2 NPC distrusts you can be high chance of combat
+3–4 Neutral can be higher chance depending on race and area 
+n5–6 NPC gives quest item or info
+Npc guides your to a weapon
+n8 Npc guides you to health
+""")
+
+def game_over ():
+    return(r"""
+ ╔┌═┐╗ ╔┌═┐╗ ╔┌┐╔┐╗ ╔┌═┐╗      ╔┌═┐╗ ╔┐ ┌╗ ╔┌═┐╗ ╔═─╗ 
+║│┌═╗ ║╚═╝║ ║│└╝│║ ║╚╗└╝      ║│ │║ ║│ │║ ║╚╗└╝ ║╚─╚╗
+║│ │║ ║│ │║ ║│  │║ ║│ ┌╗      ║│ │║ └│┌│┘ ║│ ┌╗ ║┌═┐║
+╚└═┘╝ ╚╝ ╚╝ ╚┘  └╝ ╚└═┘╝      ╚└═┘╝  └╝┘  ╚└═┘╝ ╚╝ ╚╝   
+
+you only have one life in this game better luck next time
+""")
 
 
-first_time=bool(input("is this your first time playing or do you want a re cap on rules")
-if first_time== yes or true 
-print(rules)
+# Ask the player to press 1 to continue
+play_input = input("Press 1 to continue: ")
 
-print(show_level1())
-print("welcome to level 1 your first level in this game")
+# Check if the user entered '1'
+if play_input == "1":
+  first_time = input(
+      "Is this your first time playing or do you want a recap on rules? (yes/no)"
+      " ").lower()
 
-
-        return result
+  # Check if the user said yes
+  if first_time in ["yes", "true", "y"]:
+    print(DR() and ER() and CR())
+  else:
+    print(show_level1())
+    print("Welcome to level 1, your first level in this game.")
+else:
+    print("Goodbye!")
