@@ -3,9 +3,11 @@ import sys  # The restart system
 import time
 import random
 
+
 def clear_screen():
     """Clears the terminal screen for a cleaner look."""
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def restart_program():
     """Restarts the current program."""
@@ -13,6 +15,7 @@ def restart_program():
     time.sleep(1)
     python = sys.executable
     os.execl(python, python, *sys.argv)
+
 
 def terminal_loading_screen():
     print("Loading application...")
@@ -26,6 +29,7 @@ def terminal_loading_screen():
         time.sleep(0.01)  # Speed up slightly for testing
     print("\nLoad complete!")
     time.sleep(0.5)
+
 
 # --- GAME REGISTRATION & VALIDATION ---
 clear_screen()
@@ -43,6 +47,8 @@ pegi = 16
 if age < pegi:
     print("You are too young! Exiting game...")
     sys.exit()  # Safely closes the program
+
+
 class RPGGameEngine:
     def __init__(self, player_race, current_area):
         self.player_race = player_race.lower()  # Standardised for easier logic comparisons
@@ -69,6 +75,7 @@ class RPGGameEngine:
         roll = self.roll_dice(8)
         modifier = 0
 
+
 print(r"""
 ██████╗          \  |  /       █████╗    ███╗  ███╗
 ██╔══██╗      -- ▄████▄ --     ██╔══██╗  ████╗ ████║
@@ -81,7 +88,7 @@ print("welcome to ROAM", username)
 
 
 def human():
-    return(r"""
+    return (r"""
     ⠀⠀ ⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⣠⣤⡀⠀⠀⡀⠀⠀⠀⠀⠀⠀
        ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠰⢸⣧⠞⠁⡷⢿⣦⡀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
        ⠀  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠸⣼⢪⡇⠀⠀⣷⣶⢹⡇⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -116,9 +123,10 @@ def human():
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡠⢤⠴⠒⢋⣾⣿⣿⣿⠇⡀⠂⢡⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣙⡇⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠠⣄
 ⠀⠀⠀⠀⠀⠀⠀⠀⠉⣶⣎⣁⣀⣀⣼⣿⣿⣿⣿⡮⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡌⢻⡇⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
     """)
-    
+
+
 def hybrid():
-    return(r"""
+    return (r"""
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -160,8 +168,9 @@ def hybrid():
 
 """)
 
+
 def cyborg():
-    return(r"""
+    return (r"""
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣦⣼⣭⣭⣤⣭⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⣿⣿⣿⣿⣿⣿⣿⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -193,8 +202,9 @@ def cyborg():
 
 """)
 
+
 def alien():
-    return(r"""
+    return (r"""
 ⠀⠀⣠⣶⢶⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⢰⣿⠃⠛⠹⡻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣄⣠⣤⣤⣤⣤⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⢿⡆⠀⠀⠈⠈⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⡴⠞⠛⠿⠯⠻⠛⠉⠉⠉⠀⠀⠈⠉⠉⠛⠓⠶⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -235,8 +245,9 @@ def alien():
 
 """)
 
+
 def cyberaxe():
-    return(r"""
+    return (r"""
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⢀⡠⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠡⡧⢤⠤⠤⠤⣀⠀⠀⠀⣀⡤⣲⡿⣩⢟⡿⡵⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠞⠀⡠⢶⣶⠶⣿⡟⣒⠽⣛⡤⠤⢾⡿⠛⣣⠾⢿⡀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -260,6 +271,7 @@ def cyberaxe():
 ⠰⣵⠟⣷⠟⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠘⡈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 """)
+
 
 def show_level1():
     return ("""
@@ -291,6 +303,7 @@ ___________________/_/________~ ~ ~ ~ ~ ~ ~ ~ ~__________  \\_\\________________
 [quest] stop corrupted flora from spreading 
 ================================================================================
 """)
+
 
 def get_boss1():
     return (r"""
@@ -338,6 +351,34 @@ search 𓆦☾❀✧♡ for more!!⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 
 """)
 
+boss1_data = {
+    "bloom_tyrant": {
+        "name": "Bloom Tyrant",
+        "type": "Mutated Bio-Flora",
+        "hp": 140,
+        "max_hp": 140,
+        "energy": 80,
+        "hazard_rating": "Severe",
+        "abilities": {
+            "ascii_art":get_boss1(),
+            "passive": "Chlorophyll Shield (Heals 10 HP per turn if not in underground sectors)",
+            "active_1": "Nectarous Pull (Forces player to roll Dialogue/Willpower or lose 15 Energy)",
+            "active_2": "Pistil Whiplash (Deals 20-40 physical damage)",
+        },
+        "description": "A massive, towering hibiscus mutation pulsing with toxic, bioluminescent sap. Its massive petals conceal a maw of chitinous teeth.",
+    }
+},
+active_boss = boss1_data["bloom_tyrant"]
+clear_screen()
+if "ascii_art" in active_boss:
+    print(active_boss["ascii_art"])
+    boss_hp = active_boss["hp"]
+    boss_max_hp = active_boss["max_hp"]
+    boss_energy = active_boss["energy"]
+
+    if boss_hp >0:
+        show_level1()
+
 def show_level2():
     return (r"""
 ================================================================================
@@ -378,6 +419,7 @@ ________________/______________________________________________\________________
 
 """)
 
+
 def get_boss2():
     return (r"""
 
@@ -410,8 +452,9 @@ def get_boss2():
 ================================================================================
 """)
 
+
 def show_level3():
-    return(r"""
+    return (r"""
 ================================================================================
                🌊  L E V E L  3  :  T H E  A B Y S S A L  B L U E  🌊
 ================================================================================
@@ -445,6 +488,7 @@ ___________________/_/________~ ~ ~ ~ ~ ~ ~________\_\__________________
 [Hint]  You have to defeat guardians of the Tide and only when you defeat
 ================================================================================
 """)
+
 
 def get_boss3():
     return (r"""
@@ -480,8 +524,9 @@ def get_boss3():
 ================================================================================
 """)
 
+
 def show_level4():
-    return(r"""
+    return (r"""
 =================================================================================
             🌋L E V E L   4 :   V o l c a n i s   E m b e r🌋
 =================================================================================
@@ -524,6 +569,7 @@ def show_level4():
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """)
 
+
 def get_boss4():
     return (r"""
 =================================================================================
@@ -548,6 +594,7 @@ def get_boss4():
 =================================================================================
 
 """)
+
 
 def show_level5():
     return (r"""
@@ -602,8 +649,9 @@ to make it to the current ruler and take its place as the  ruler of the Luminara
 
 """)
 
+
 def get_boss5():
-    return(r"""
+    return (r"""
 ==================================================================================
 🌌 👑 T h e  R i f t  M o n a r c h  —  a  c o s m i c ‑ c o r a l  b e i n g🌌 👑
 ==================================================================================
@@ -628,6 +676,7 @@ def get_boss5():
 ⠀⠀⠈⢿⣁⣳⡤⠈⢣⣄⠀⠀⠀⠀⠈⢛⣛⠀⠀⠀⠉⠉⠓⠒⣠⠤⢤⣶⠦⠤⢤⣀⡀⠀⠀⢠⣴⣞⣒⠒⠚⣷⠋⠀⠀⣠⠋⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢮⡙⠢⣤⣉⠳⣄⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
  ==================================================================================
     """)
+
 
 def getportal():
     return (r"""
@@ -681,91 +730,88 @@ def getportal():
                                                                                 .--::                                :::..                   
 """)
 
-def game_over ():
-    return(r"""
+
+def game_over():
+    return (r"""
  ╔┌═┐╗ ╔┌═┐╗ ╔┌┐╔┐╗ ╔┌═┐╗      ╔┌═┐╗ ╔┐ ┌╗ ╔┌═┐╗ ╔═─╗ 
 ║│┌═╗ ║╚═╝║ ║│└╝│║ ║╚╗└╝      ║│ │║ ║│ │║ ║╚╗└╝ ║╚─╚╗
 ║│ │║ ║│ │║ ║│  │║ ║│ ┌╗      ║│ │║ └│┌│┘ ║│ ┌╗ ║┌═┐║
 ╚└═┘╝ ╚╝ ╚╝ ╚┘  └╝ ╚└═┘╝      ╚└═┘╝  └╝┘  ╚└═┘╝ ╚╝ ╚╝   
 """)
 
-level=1 
-if boss
+
+level = 1
 def display_level_art(level):
-    if level == 1:
-        show_level_1()
-    elif level == 2:
-        show_level_2()
-    elif level == 3:
-        show_level_3()
-    elif level == 4:
-        show_level_4()
-    elif level == 5:
-        show_level_5()
-        
+        if level == 1:
+            show_level1()
+        elif level == 2:
+            show_level2()
+        elif level == 3:
+            show_level3()
+        elif level == 4:
+            show_level4()
+        elif level == 5:
+            show_level5()
+location=level,
+
 species_data = {
     "1": {
-        "name": "Human", 
-        "ability": "Adaptability (+20 Max Health)", 
-        "hp": 120, 
+        "name": "Human",
+        "ability": "Adaptability (+20 Max Health)",
+        "hp": 120,
         "energy": 100,
-        "description": "Standard organic biology. Balanced stats with enhanced long-term durability."
-        
-        human()
+        "description": "Standard organic biology. Balanced stats with enhanced long-term durability.",
+        "effect": human()
     },
     "2": {
-        "name": "Hybrid", 
-        "ability": "Symbiosis (+15 Base Attack)", 
-        "hp": 100, 
+        "name": "Hybrid",
+        "ability": "Symbiosis (+15 Base Attack)",
+        "hp": 100,
         "energy": 100,
-        "description": "Part organic, part unknown. Aggressive mutations grant powerful physical offensive damage."
-        
-        hybrid()
+        "description": "Part organic, part unknown. Aggressive mutations grant powerful physical offensive damage.",
+        "effect": hybrid()
     },
     "3": {
-        "name": "Cyborg", 
-        "ability": "Overclock (Efficiency, costs less Energy to move)", 
-        "hp": 110, 
+        "name": "Cyborg",
+        "ability": "Overclock (Efficiency, costs less Energy to move)",
+        "hp": 110,
         "energy": 120,
-        "description": "Mechanically enhanced lifeform. Massive energy storage capacity "
-        
-        cyborg()
+        "description": "Mechanically enhanced lifeform. Massive energy storage capacity ",
+        "effect": cyborg()
     },
-    
-    
     "4": {
-        "name": "Alien", 
-        "ability": "Plasma Shield (Blocks 15% incoming damage)", 
-        "hp": 90, 
+        "name": "Alien",
+        "ability": "Plasma Shield (Blocks 15% incoming damage)",
+        "hp": 90,
         "energy": 110,
-        "description": "Extraterrestrial traveler. Physically frail but shielded by unique spatial technology."
-        
-        alien()
-        
+        "description": "Extraterrestrial traveler. Physically frail but shielded by unique spatial technology.",
+        "effect": alien()
     }
-
 }
+
+
+
 if __name__ == "__main__":
     terminal_loading_screen()
     clear_screen()
-    
+
     print("=========================================")
     print(f"           WELCOME TO ROAM, {username.upper()}           ")
     print("=========================================\n")
-    
+
     # Selection Flow
     print("Select your Origin Species:")
     for key, info in species_data.items():
         print(f" [{key}] {info['name']} - {info['ability']}")
         print(f"     └ {info['description']}")
-    
+
     choice = input("\nChoose your species index (1-4): ").strip()
     if choice not in species_data:
         print("Invalid alignment choice! Defaulting to Human lineage.")
         choice = "1"
-        
+
     player_species = species_data[choice]
-    
+
     # Initialize Player Session Attributes
     player_hp = player_species["hp"]
     player_max_hp = player_species["hp"]
@@ -792,8 +838,10 @@ if __name__ == "__main__":
             if action == 'r':
                 restart_program()
             else:
-                print("Goodbye traveler.")
+                print("Goodbye traveler")
                 sys.exit()
+
+
 class RPGGameEngine:
     def __init__(self, player_race, current_area):
         self.player_race = player_race.lower()
@@ -816,11 +864,11 @@ class RPGGameEngine:
         modifier = 0
 
         if self.player_race == "alien" and self.current_area == "Trinidad Village":
-            modifier = -2  
+            modifier = -2
         elif self.player_race == "human" and self.current_area == "Trinidad Village":
-            modifier = 1  
+            modifier = 1
         elif self.player_race == "hybrid":
-            modifier = -1  
+            modifier = -1
 
         final_roll = max(1, min(8, roll + modifier))
 
@@ -835,79 +883,43 @@ class RPGGameEngine:
             result += "Great Success! The NPC guides you directly to a new weapon!"
         elif final_roll == 8:
             result += "Perfect Success! The NPC guides you to a hidden stash of supplies!"
-        
+
         return final_roll, result
 
+print(f"\n[ Location: {location} | HP: {player_hp}/{player_max_hp} | Energy: {player_energy}/{player_max_energy} | Credits: {credits} CR ]")
+print("What would you like to do?")
+print(" 1. Scavenge Surrounding Sector (Costs 20 Energy)")
+print(" 2. Rest at Command Pod (Restores 40 Energy & 20 HP)")
+print(" 3. Access Status Terminal")
+print(" 4. Reboot Game Engine")
+print(" 5. Disconnect / Exit")
 
-        print(f"\n[ Location: {location} | HP: {player_hp}/{player_max_hp} | Energy: {player_energy}/{player_max_energy} | Credits: {credits} CR ]")
-        print("What would you like to do?")
-        print(" 1. Scavenge Surrounding Sector (Costs 20 Energy)")
-        print(" 2. Rest at Command Pod (Restores 40 Energy & 20 HP)")
-        print(" 3. Access Status Terminal")
-        print(" 4. Reboot Game Engine")
-        print(" 5. Disconnect / Exit")
-        
-        cmd = input("\nEnter selection (1-5): ").strip()
-        
-        if cmd == "1":
-            clear_screen()
-            # Dynamic movement expenditure rule based on Cyborg trait
-            energy_cost = 10 if player_species["name"] == "Cyborg" else 20
-            
-            if player_energy < energy_cost:
-                print("❌ Insufficient energy resources! Rest up first.")
-                continue
-                
-            player_energy -= energy_cost
-            print(f"⚡ Spent {energy_cost} Energy searching the wasteland...")
-            time.sleep(1.5)
-            
-            # Random event generation
-            outcome = random.choice(["loot", "hazard", "empty"])
-            if outcome == "loot":
-                found_credits = random.randint(25, 75)
-                credits += found_credits
-                print(f"💰 Success! You discovered hidden technology cache worth {found_credits} Credits.")
-            elif outcome == "hazard":
-                damage = random.randint(15, 30)
-                # Apply structural armor mitigations
-                if player_species["name"] == "Alien":
-                    damage = int(damage * 0.85)
-                    print("🛡️ Your Plasma Shield absorbed a portion of the incoming blast!")
-                player_hp -= damage
-                print(f"💥 Hazard! You triggered an abandoned automated security node and suffered {damage} damage.")
-            else:
-                print("💨 The sector is picked clean. You found nothing but stardust.")
-                
-        elif cmd == "2":
-            clear_screen()
-            player_energy = min(player_max_energy, player_energy + 40)
-            player_hp = min(player_max_hp, player_hp + 20)
-            print("🛏️ You dock inside the pod. Vital systems are regenerating...")
-            time.sleep(1.5)
-            print("Status updated.")
-            
-        elif cmd == "3":
-            clear_screen()
-            print("=== SYSTEMS CONFIGURATION TERMINAL ===")
-            print(f"name:       {username}")
-            print(f"Species Gen:    {player_species['name']}")
-            print(f"Chassis Integrity: {player_hp}/{player_max_hp}")
-            print(f"Power Core:     {player_energy}/{player_max_energy}")
-            print(f"Financial Net:  {credits} CR")
-            print(f"ability Mod:       {player_species['ability']}")
-            print(f"continue Mod:   {[]}              ")
-            print("======================================")
-            input("\nPress Enter to exit terminal...")
-            clear_screen()
-            
-        elif cmd == "4":
-            restart_program()
-            
-        elif cmd == "5":
-            print("\nShutting down ROAM interface... Safe travels.")
-            sys.exit()
-            
-        else:
-            print("Invalid sequence input.")
+cmd = input("\nEnter selection (1-5): ").strip()
+
+
+
+if player_energy < energy_cost:
+    print("❌ Insufficient energy resources! Rest up first.")
+
+player_energy -= energy_cost
+print(f"⚡ Spent {energy_cost} Energy searching the wasteland...")
+time.sleep(1.5)
+
+ # Random event generation
+outcome = random.choice(["loot", "hazard", "empty"])
+if outcome == "loot":
+   found_credits = random.randint(25, 75)
+   credits += found_credits
+   print(f"💰 Success! You discovered hidden technology cache worth {found_credits} Credits.")
+elif outcome == "hazard":
+    damage = random.randint(15, 30)
+    # Apply structural armor mitigations
+if player_species["name"] == "Alien":
+    damage = int(damage * 0.85)
+    print("🛡️ Your Plasma Shield absorbed a portion of the incoming blast!")
+    player_hp -= damage
+    print(f"💥 Hazard! You triggered an abandoned automated security node and suffered {damage} damage.")
+else:
+    print("💨 The sector is picked clean. You found nothing but stardust.")
+
 
