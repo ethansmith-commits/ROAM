@@ -76,6 +76,7 @@ class RPGGameEngine:
         modifier = 0
 
 
+
 print(r"""
 ██████╗          \  |  /       █████╗    ███╗  ███╗
 ██╔══██╗      -- ▄████▄ --     ██╔══██╗  ████╗ ████║
@@ -212,8 +213,7 @@ def alien_art():
 ⠀⠀⠀⠀⠘⣷⠀⠀⠀⠼⣇⠀⠀⠀⠀⢸⠟⣡⠤⠖⠒⠀⠀⣤⣶⣿⣿⣿⣿⣿⡿⣿⣿⣿⣶⣦⣤⣄⣀⠠⢤⣀⠀⠀⠀⠉⠻⢭⡳⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠈⣷⠠⢳⣄⣹⡄⠀⠀⠀⢸⡞⠁⠀⠀⠂⢠⣾⣿⣿⡇⢸⢻⢹⡿⢠⣿⢿⣿⢻⣿⣿⣿⣿⣿⣦⣌⠙⢦⠀⠀⠀⠀⠘⢷⡜⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠈⣧⠹⣽⣿⣿⡄⠀⠀⠈⢧⡀⠀⠀⠀⣿⣿⡏⣿⡇⢸⣿⣼⣧⣿⣿⣿⣯⣿⣿⡟⢹⣿⣿⣿⣿⣿⣦⠛⣤⠀⠀⠀⠈⢷⡄⠙⢦⡀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠘⣧⢻⣛⣿⢧⠀⠀⠀⠀⠻⣤⣠⣤⣿⣹⣷⣿⣷⣤⣿⠟⠛⠛⠛⣻⣿⣿⣿⣷⡛⢻⡿⢫⣿⣿⣿⣿⣦⢷⠀⠀⠀⠘⣾⣆⠀⢻⡄⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢻⣏⠏⠋⢻⢧⠀⠀⠀⠀⠈⠛⢿⣿⣿⣾⣿⡿⠛⠁⠀⣠⡴⢛⣿⣿⣿⣽⢛⡛⠾⣧⣿⣿⣿⢟⣻⣿⡜⠀⠀⠀⠀⢈⣿⡇⢹⡹⣄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠘⣧⢻⣛⣿⢧⠀⠀⠀⠀⠻⣤⣠⣤⣿⣹⣷⣿⣷⣤⣿⠟⠛⠛⠛⣻⣿⣿⣿⣷⡛⢻⡿⢫⣿⣿⣿⣿⣦⢷⠀⠀⠀⠘⣾⣆⠀⢻⡄⠀⠀⠀⠀
 ⣤⡀⠀⠀⠀⠀⠀⠀⠀⣿⡸⣾⡽⠟⣧⡀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⠖⣲⡾⡇⠀⢿⣿⣿⣿⣿⣿⣿⣴⣾⣻⣿⣿⣿⣾⣿⣿⡄⠀⠀⠀⣾⣿⣇⠸⣟⣟⣆⠀⠀⠀
 ⠄⢬⣽⣛⠶⢶⣦⣤⣤⣸⣇⢋⠔⣻⠭⢳⡀⠀⠀⠀⠀⠀⣸⣷⡿⣿⣿⣻⡇⣨⣽⣿⣿⡟⣻⢿⣿⣿⣿⣷⣿⣿⣿⣿⣿⣿⠘⣿⣄⡀⠀⡏⢿⣻⠀⣿⣿⣿⡆⠀⠀
 ⣾⢾⡀⡼⣿⠛⢓⠶⢒⣽⣻⣯⡞⣡⣞⡧⣝⣦⡀⢠⡾⠋⢉⣾⣿⣿⠟⢻⣿⣿⡛⢦⣄⣄⣿⢿⣻⣿⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣜⣆⡇⠈⢿⡇⣿⣿⣿⣿⠀⠀
@@ -351,33 +351,7 @@ def get_boss1():
 
 """)
 
-boss1_data = {
-    "bloom_tyrant": {
-        "name": "Bloom Tyrant",
-        "type": "Mutated Bio-Flora",
-        "hp": 140,
-        "max_hp": 140,
-        "energy": 80,
-        "hazard_rating": "Severe",
-        "abilities": {
-            "ascii_art":get_boss1(),
-            "passive": "Chlorophyll Shield (Heals 10 HP per turn if not in underground sectors)",
-            "active_1": "Nectarous Pull (Forces player to roll Dialogue/Willpower or lose 15 Energy)",
-            "active_2": "Pistil Whiplash (Deals 20-40 physical damage)",
-        },
-        "description": "A massive, towering hibiscus mutation pulsing with toxic, bioluminescent sap. Its massive petals conceal a maw of chitinous teeth.",
-    }
-},
-active_boss = boss1_data["bloom_tyrant"]
-clear_screen()
-if "ascii_art" in active_boss:
-    print(active_boss["ascii_art"])
-    boss_hp = active_boss["hp"]
-    boss_max_hp = active_boss["max_hp"]
-    boss_energy = active_boss["energy"]
 
-    if boss_hp >0:
-        show_level1()
 
 def show_level2():
     return (r"""
@@ -677,6 +651,7 @@ def get_boss5():
  ==================================================================================
     """)
 
+
 def game_over():
     return (r"""
  ╔┌═┐╗ ╔┌═┐╗ ╔┌┐╔┐╗ ╔┌═┐╗      ╔┌═┐╗ ╔┐ ┌╗ ╔┌═┐╗ ╔═─╗ 
@@ -686,27 +661,23 @@ def game_over():
 """)
 
 
-
 def display_level_art(level):
-        if level == 1:
-             print(show_level1())
-        elif level == 2:
-            print(show_level2())
-        elif level == 3:
-            print(show_level3())
-        elif level == 4:
-             printshow_level4())
-        elif level == 5:
-            print(show_level5())
+    if level == 1:
+        print(show_level1())
+    elif level == 2:
+        print(show_level2())
+    elif level == 3:
+        print(show_level3())
+    elif level == 4:
+        print(show_level4())
+    else:
+        print(show_level5())
 
-
-
-location=level
 
 
 def display_hero(Race, username, lore, strengths, weaknesses, signature, ascii_art):
     print("\n" + "=" * 60)
-    print(ascii_art) 
+    print(ascii_art)
     print("=" * 60)
     print(f"👤 PROFILE FOR: {username.upper()}")
     print(f"🧬 RACE:         {Race.upper()}")
@@ -716,21 +687,30 @@ def display_hero(Race, username, lore, strengths, weaknesses, signature, ascii_a
     print(f"💫 SIGNATURE:    {signature}")
     print("=" * 60)
 
-
-
 class RPGGameEngine:
-    def __init__(self, player_race, base_stats):
-        self.player_race = player_race.lower()
-        self.current_area = "Sector 0 - Command Hub"
-        
-        # Player attributes linked organically to their choice profiles
-        self.hp = base_stats["hp"]
-        self.max_hp = base_stats["hp"]
-        self.energy = base_stats["energy"]
-        self.max_energy = base_stats["energy"]
+    def __init__(self, username, profile):
+        self.username = username
+        self.player_race = profile["race"]
+        self.signature = profile["signature"]
+
+        # Level is a number. Area is a separate string.
+        self.current_level = 1
+        self.current_area = "Sector 1 - Command Hub"
+
+        self.max_hp = profile["hp"]
+        self.hp = self.max_hp
+
+        self.max_energy = profile["energy"]
+        self.energy = self.max_energy
+
         self.credits = 100
-        
         self.boss_defeated_for_current_level = False
+        self.game_over = False
+
+def pause():
+    input("\nPress Enter to continue...")
+
+
 
     def roll_dice(self, sides):
         return random.randint(1, sides)
@@ -742,7 +722,7 @@ class RPGGameEngine:
         roll = self.roll_dice(8)
         # Cap out non-boss instances at 6 as requested by rules
         effective_roll = roll if is_boss_fight else min(6, roll)
-        
+
         result = f"Combat Roll: {roll} -> "
         if effective_roll <= 2:
             return effective_roll, result + "Miss / enemy hits! You take damage."
@@ -767,20 +747,11 @@ class RPGGameEngine:
             return result + "High roll: Rare item, creature, or lore discovered!"
 
     def dialogue_roll(self):
-        """Dialogue engine modifiers (D8)"""
+
         roll = self.roll_dice(8)
-        modifier = 0
-
-        if self.player_race == "alien" and self.current_area == "Trinidad Village":
-            modifier = -2
-        elif self.player_race == "human" and self.current_area == "Trinidad Village":
-            modifier = 1
-        elif self.player_race == "hybrid":
-            modifier = -1
-
-        final_roll = max(1, min(8, roll + modifier))
+        final_roll = max(1, min(8, roll ))
         result = f"Dialogue Roll: {roll} (Final: {final_roll}) -> "
-        
+
         if final_roll <= 2:
             result += "NPC distrusts you and engages combat!"
         elif final_roll <= 4:
@@ -791,13 +762,13 @@ class RPGGameEngine:
             result += "Npc guides your direction to a weapon!"
         elif final_roll == 8:
             result += "Npc guides your direction directly to health!"
-            
+
         return final_roll, result
 
     def load_and_fight_boss(self, boss_key):
         """Loads and fights boss keys from the dictionary format."""
         boss_database = {
-            "bloom_tyrant": {
+            "1": {
                 "name": "Bloom Tyrant",
                 "type": "Mutated Bio-Flora",
                 "hp": 140, "max_hp": 140, "energy": 80,
@@ -809,28 +780,28 @@ class RPGGameEngine:
                 },
                 "description": "A massive flower mutation pulsing with toxic sap."
             },
-            "baseline_titan": {
+            "2": {
                 "name": "Baseline Titan",
                 "type": "Sound-wave Mech",
                 "hp": 180, "max_hp": 180, "energy": 100,
                 "abilities": {"ascii_art": get_boss2(), "passive": "Steel Plating"},
                 "description": "A sound-wave mech specializing in steel and tech-based attacks."
             },
-            "queen_abyssara": {
+            "3": {
                 "name": "Queen Abyssara",
                 "type": "Abyssal Monarch",
                 "hp": 190, "max_hp": 190, "energy": 120,
                 "abilities": {"ascii_art": get_boss3(), "passive": "Pressure Crush"},
                 "description": "Ruler of the deep rifts."
             },
-            "ember_sovereign": {
+            "4": {
                 "name": "Ember Sovereign",
                 "type": "Magma Dragon",
                 "hp": 220, "max_hp": 220, "energy": 150,
                 "abilities": {"ascii_art": get_boss4(), "passive": "Blazing Aura"},
                 "description": "A magma dragon burning through geothermal vents."
             },
-            "rift_monarch": {
+            "5": {
                 "name": "The Rift Monarch",
                 "type": "Cosmic-Coral Being",
                 "hp": 350, "max_hp": 350, "energy": 200,
@@ -841,24 +812,24 @@ class RPGGameEngine:
 
         active_boss = boss_database[boss_key]
         clear_screen()
-        
+
         if "ascii_art" in active_boss["abilities"]:
             print(active_boss["abilities"]["ascii_art"])
-            
+
         boss_hp = active_boss["hp"]
         boss_max_hp = active_boss["max_hp"]
-        
+
         print(f"\n👹 BOSS ENCOUNTER STARTED: {active_boss['name']}")
         print(f"Description: {active_boss['description']}")
-        
+
         # Combat simulator loop
         while boss_hp > 0 and self.hp > 0:
             print(f"\n[Your HP: {self.hp}/{self.max_hp} | Boss HP: {boss_hp}/{boss_max_hp}]")
-            action = input("Press Enter to execute D8 Combat roll... ")
-            
+
+
             value, msg = self.combat_roll(is_boss_fight=True)
             print(msg)
-            
+
             if value <= 2:
                 self.hp -= 20
                 print("💥 Boss counters! You lose 20 HP.")
@@ -874,7 +845,7 @@ class RPGGameEngine:
             elif value >= 7:
                 boss_hp -= 50
                 print("🚨 Boss mechanic breakthrough! You dealt 50 massive DMG!")
-                
+
         if boss_hp <= 0:
             print(f"\n🎉 Victory! You defeated {active_boss['name']}!")
             self.boss_defeated_for_current_level = True
@@ -883,121 +854,172 @@ class RPGGameEngine:
 
 
 if __name__ == "__main__":
-    username = "Traveler" # Fallback definition if user setup wrapper missing
+    username = "Traveler"  # Fallback definition if user setup wrapper missing
     terminal_loading_screen()
     clear_screen()
- print("=========================================")
-    print(f"           WELCOME TO ROAM, {username.upper()}           ")
-    print("=========================================\n")
+print("=========================================")
+print(f"           WELCOME TO ROAM, {username.upper()}           ")
+print("=========================================\n")
 
-    # Unified setup configuration dictionary data maps
-    profile_specs = {
-        "1": {"race": "human", "hp": 80, "energy": 50, "art": human_art()},
-        "2": {"race": "hybrid", "hp": 120, "energy": 70, "art": hybrid_art()},
-        "3": {"race": "cyborg", "hp": 150, "energy": 40, "art": cyborg_art()},
-        "4": {"race": "alien", "hp": 70, "energy": 90, "art": alien_art()},
-    }
+# Unified setup configuration dictionary data maps
+profile_specs = {
+    "1": {"race": "human", "hp": 80, "energy": 50, "art": human_art()},
+    "2": {"race": "hybrid", "hp": 120, "energy": 70, "art": hybrid_art()},
+    "3": {"race": "cyborg", "hp": 150, "energy": 40, "art": cyborg_art()},
+    "4": {"race": "alien", "hp": 70, "energy": 90, "art": alien_art()},
+}
 
-    choice_0 = input("Select a Hero profile to view (1-4 anything else takes you back): ").strip()
-    
-    if choice_0 not in profile_specs:
-        print("Invalid alignment choice! Defaulting to Human lineage.")
-        choice_0 = "1"
+choice_0 = input("Select a Hero profile to view (1-4 anything else takes you back): ").strip()
 
-    target_spec = profile_specs[choice_0]
- if choice_0 == "1":
-        display_hero("human", username, "A descendant of ancient Caribbean guardians...", "Nature affinity...", "Lower tech...", "Soul wave...", target_spec["art"])
-    elif choice_0 == "2":
-        display_hero("hybrid", username, "Half human, half extraterrestrial...", "Good stats...", "High energy cost...", "Morph tide...", target_spec["art"])
-    elif choice_0 == "3":
-        display_hero("cyborg", username, "Built from coral tech and nanometal...", "High Defense...", "Water vulnerability...", "Pulse scan...", target_spec["art"])
-    elif choice_0 == "4":
-        display_hero("alien", username, "Crash-landed near Trinidad's floating reef...", "Telepathy...", "Fauna vulnerability...", "Astral echo...", target_spec["art"])
+if choice_0 not in profile_specs:
+    print("Invalid alignment choice! Defaulting to Human lineage.")
+    choice_0 = "1"
+
+target_spec = profile_specs[choice_0]
+if choice_0 == "1":
+    display_hero("human", username, "A descendant of ancient Caribbean guardians...", "Nature affinity...",
+                 "Lower tech...", "Soul wave...", target_spec["art"])
+elif choice_0 == "2":
+    display_hero("hybrid", username, "Half human, half extraterrestrial...", "Good stats...", "High energy cost...",
+                 "Morph tide...", target_spec["art"])
+elif choice_0 == "3":
+    display_hero("cyborg", username, "Built from coral tech and nanometal...", "High Defense...",
+                 "Water vulnerability...", "Pulse scan...", target_spec["art"])
+elif choice_0 == "4":
+    display_hero("alien", username, "Crash-landed near Trinidad's floating reef...", "Telepathy...",
+                 "Fauna vulnerability...", "Astral echo...", target_spec["art"])
 
     # Instantiate player engine data dynamically tracking choice index allocations
-    game = RPGGameEngine(player_race=target_spec["race"], base_stats={"hp": target_spec["hp"], "energy": target_spec["energy"]})
+game = RPGGameEngine(player_race=target_spec["race"],
+                     base_stats={"hp": target_spec["hp"], "energy": target_spec["energy"]})
 
-    clear_screen()
-    print("--- CHARACTER INITIALISED ---")
-    print(f"Name:     {username}")
-    print(f"Species:  {game.player_race.upper()}")
-    print(f"Health:   {game.hp}/{game.max_hp}")
-    print(f"Energy:   {game.energy}/{game.max_energy}")
-    print(f"Credits:  {game.credits} CR")
-    print("-----------------------------\n")
-    time.sleep(2)
+clear_screen()
+print("--- CHARACTER INITIALISED ---")
+print(f"Name:     {username}")
+print(f"Species:  {game.player_race.upper()}")
+print(f"Health:   {game.hp}/{game.max_hp}")
+print(f"Energy:   {game.energy}/{game.max_energy}")
+print(f"Credits:  {game.credits} CR")
+print("-----------------------------\n")
+time.sleep(2)
 
-    # --- MAIN PLAYABLE GAME LOOP ---
-    # Setup level pacing dictionary mapping
-    level_bosses = {
-        1: "bloom_tyrant",
-        2: "baseline_titan",
-        3: "queen_abyssara",
-        4: "ember_sovereign",
-        5: "rift_monarch"
-    }
+# --- MAIN PLAYABLE GAME LOOP ---
+# Setup level pacing dictionary mapping
+level_bosses = {
+    1: "bloom_tyrant",
+    2: "baseline_titan",
+    3: "queen_abyssara",
+    4: "ember_sovereign",
+    5: "rift_monarch"
+}
 
-    while True:
-        # Check death states immediately at top of loop frame
-        if game.hp <= 0:
-            print("\n*** CRITICAL FAILURE: Your life signs have flatlined. ***")
-            action = input("Press [R] to restart ROAM or [E] to exit: ").lower().strip()
-            if action == 'r':
-                restart_program()
-                break 
-            else:
-                print("Goodbye traveler.")
-                sys.exit()
-
-        print(f"\n====================== LEVEL {game.current_level} ======================")
-        print(f" [1] Roll for Room Exploration (D8)")
-        print(f" [2] Approach Area Zone Boss")
-        print(f" [3] View Character Vital Vitals")
-        print(f" [4] Exit Game")
-        print("====================================================")
-        
-        turn_choice = input("What will you do? ").strip()
-
-        if turn_choice == "1":
-            clear_screen()
-            print(game.exploration_roll())
-            # Give player some random rewards/penalties to test engine weights
-            time.sleep(2)
-
-        elif turn_choice == "2":
-            # Target boss string according to the active level number
-            active_boss_key = level_bosses.get(game.current_level, "rift_monarch")
-            game.load_and_fight_boss(active_boss_key)
-
-            # If boss is beaten, automatically advance the level state!
-            if game.boss_defeated_for_current_level:
-                if game.current_level < 5:
-                    game.current_level += 1
-                    game.boss_defeated_for_current_level = False # Reset gate for next zone
-                    print(f"\n✨ Victory Achievement! Proceeding to Level {game.current_level}...")
-                else:
-                    print("\n🏆 CONGRATULATIONS! You have conquered the Rift Monarch and finished ROAM!")
-                    sys.exit()
-            time.sleep(2)
-
-        elif turn_choice == "3":
-            clear_screen()
-            print("--- CURRENT STATUS ---")
-            print(f"Location:  Level {game.current_level}")
-            print(f"Health:    {game.hp}/{game.max_hp} HP")
-            print(f"Energy:    {game.energy}/{game.max_energy} EN")
-            print(f"Credits:   {game.credits} CR")
-            print("----------------------")
-            input("\nPress Enter to return...")
-
-        elif turn_choice == "4":
-            print("Saving data... Goodbye traveler.")
-            sys.exit()
-            
+while True:
+    # Check death states immediately at top of loop frame
+    if game.hp <= 0:
+        print("\n*** CRITICAL FAILURE: Your life signs have flatlined. ***")
+        action = input("Press [R] to restart ROAM or [E] to exit: ").lower().strip()
+        if action == 'r':
+            restart_program()
+            break
         else:
-            print("[Invalid choice! Select a valid menu action number.]")
+            print("Goodbye traveler.")
+            sys.exit()
+
+    print(f"\n====================== LEVEL {game.current_area} ======================")
+    print(f" [1] Roll for Room Exploration (D8)")
+    print(f" [2] Approach Area Zone Boss")
+    print(f" [3] View Character Vital Vitals")
+    print(f" [4] Exit Game")
+    print("====================================================")
+
+    turn_choice = input("What will you do? ").strip()
+
+    if turn_choice == "1":
+        clear_screen()
+        print(game.exploration_roll())
+        # Give player some random rewards/penalties to test engine weights
+        time.sleep(2)
+
+    elif turn_choice == "2":
+        # Target boss string according to the active level number
+        active_boss_key = level_bosses.get(game.boss_defeated_for_current_level, "rift_monarch")
+        game.load_and_fight_boss(active_boss_key)
 
 
+        if game.boss_defeated_for_current_level:
+            if game.current_area < 5:
+                game.current_area += 1
+                game.boss_defeated_for_current_level = False  # Reset gate for next zone
+                print(f"\n✨ Victory Achievement! Proceeding to Level {game.current_area}...")
+            else:
+                print("\n🏆 CONGRATULATIONS! You have conquered the Rift Monarch and finished ROAM\n you are now the king of the world and you can decide !")
+                sys.exit()
+        time.sleep(2)
+
+    elif turn_choice == "3":
+        clear_screen()
+        print("--- CURRENT STATUS ---")
+        print(f"Location:  Level {game.current_area}")
+        print(f"Health:    {game.hp}/{game.max_hp} HP")
+        print(f"Energy:    {game.energy}/{game.max_energy} EN")
+        print(f"Credits:   {game.credits} CR")
+        print("----------------------")
+        input("\nPress Enter to return...")
+
+    elif turn_choice == "4":
+        print("Saving data... Goodbye traveler.")
+        sys.exit()
+
+    else:
+        print("[Invalid choice! Select a valid menu action number.]")
+
+
+    def command_centre(self):
+        """The core operational loop for the player."""
+        while self.hp > 0:
+            print("\n" + "=" * 50)
+            print(f"📡 COMMAND CENTRE | Location: {self.current_area.upper()}")
+            print(
+                f"❤️ HP: {self.hp}/{self.max_hp} | ⚡ Energy: {self.energy}/{self.max_energy} | 🪙 Credits: {self.credits}")
+            print("=" * 50)
+
+            print("👉 [1] EXPLORE (Scan the area for items, logs, or hazards)")
+            print("👉 [2] DIALOGUE (Commune with local inhabitants)")
+            print("👉 [3] ENGAGE BOSS (Locate and fight the sector threat)")
+            print("👉 [4] NAVIGATE (Travel to a different sector)")
+            print("👉 [5] QUIT GAME")
+            print("=" * 50)
+
+            action = input("Select an operations directive (1-5): ").strip()
+
+            if action == "1":
+                print("\n🔍 Running sector scan...")
+                result = self.exploration_roll()
+                print(result)
+
+
+            elif action == "2":
+                print("\n🗣️ Opening communications channel...")
+                roll_val, result = self.dialogue_roll()
+                print(result)
+
+            elif action == "3":
+                boss_key = self.world_map[self.current_area]["boss"]
+                if not boss_key:
+                    print("\n🛡️ Scan clean. There is no boss signature in this hub.")
+                elif self.boss_defeated_for_current_level:
+                    print(f"\n✅ The threat in {self.current_area} has already been neutralized.")
+                else:
+                    self.load_and_fight_boss(boss_key)
+
+            elif action == "4":
+                self.travel()
+
+            elif action == "5":
+                print("\nShutting down systems. Goodbye, Traveler.")
+                break
+            else:
+                print("\n⚠️ Invalid directive code. Try again.")
 
 
 
