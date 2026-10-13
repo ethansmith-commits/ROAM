@@ -87,7 +87,7 @@ print(r"""
 print("welcome to ROAM", username)
 
 
-def human():
+def human_art():
     return (r"""
     ⠀⠀ ⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⣠⣤⡀⠀⠀⡀⠀⠀⠀⠀⠀⠀
        ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠰⢸⣧⠞⠁⡷⢿⣦⡀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -125,7 +125,7 @@ def human():
     """)
 
 
-def hybrid():
+def hybrid_art():
     return (r"""
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -169,7 +169,7 @@ def hybrid():
 """)
 
 
-def cyborg():
+def cyborg_art():
     return (r"""
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣦⣼⣭⣭⣤⣭⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -203,7 +203,7 @@ def cyborg():
 """)
 
 
-def alien():
+def alien_art():
     return (r"""
 ⠀⠀⣠⣶⢶⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⢰⣿⠃⠛⠹⡻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣄⣠⣤⣤⣤⣤⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -344,7 +344,7 @@ def get_boss1():
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠈⠁⠀⣀⠀⠀⠙⠀⠀⠀⠀⠈⢻⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠋⠙⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠤⠄⠀
-search 𓆦☾❀✧♡ for more!!⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
 ================================================================================
 
@@ -677,60 +677,6 @@ def get_boss5():
  ==================================================================================
     """)
 
-
-def getportal():
-    return (r"""
-                        @@@@@@@@@@@@@@@@@############################################                                                        
-                     @@%%%@@@@@@@@@@@@@@##################################################*                                                  
-                  %%%%%%%@@@@@@@@@@@@@@########################################################                                              
-               %%%%%%%%%@@@@@@@@@@@@@@@############################################################                                          
-            ==%%%%%%%%%%@@@@@%%%%%%%%%%%%%%%@@@@@@#####################################################                                      
-          ===%%%%%%%===%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@############################################                                   
-        =====%%========%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@#######################################                                
-       ====****========%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@####################################                             
-     +==+******========%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@################################                           
-     =+++******========%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@###############################                        
-    -++++******=======%=+++********************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@###############################                      
-   --++++******=+++++++++++********************===========@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##################################                    
-  :--++++**-----+++++++++++********************===================@@@@@@@@@@@@@@@@@@@@#####################################                  
- ::--+++::------++++++++++++*******************=========================@@@@@@@@@@@@@########################################                
- ::--+  :::------+++++++++++*******************==============================@@@@@@@###########################################              
-::::     ::-------+++++++++++******************===================================@##############################################            
-:::      :::------+++                         *=======================================%###########################################           
-::        :::--                                         ===================================#########################################         
-:                                                              ===============================%######################################        
- :                                                                    =============================####################################       
-  :                                                                        .==========================##################################      
-  :                                                                             =========================################################     
- ..                                                                                :=======================#################@############    
-  ..                                                                                   -======================############@@@@@###########   
-  ...                                 :+%%@                                                =====================#########@@@@@@@##########   
-   ..                +               .+*=%@@##                                                 =====================####@@@@@@@@@@@#########  
-    ..              +              .-*==%@@@###                                                   +===================#@@@@@@@@@@@@@@#######  
-     .             +           ..---==%%%@@######                                                    +==================@@@@@@@@@@@@@@######= 
-       :                     ----++*=%%%@@@#########                          .                         ==================@@@@@@@@@@@@@###### 
-         :                  .++*****=%%@@@@@###########                                                    ================@@@@@@@@@@@@@##### 
-                     :.:::::::**======@@@@@###############                           .                       ================@@@@@@@@@@@@####=
-                     --------+=====%%%@@#####################                          .                      ===============@@@@@@@@@@@@####
-                      -++++++++=%%%%%%%@#########################@                       .                      ===============@@@@@@@@@@####
-                       .+++*****%%%%@@@@@@#############################@                   ..                     ==============@@@@@@@@@@##=
-                         *********@@@@@@@@@@#################################@@@@@@@@%%%%=*+-:.                     =============@@@@@@@@@#@ 
-                           ******===@@@@@@@@@@#############################@@@@@@@%%%===*++---:::                    =============@@@@@@@@#* 
-                             =========@@@@@@@@@###########################@@@@@@%%%%===*++-----::::                   =============@@@@@@%@  
-                               =========%@@@@@###########################@@@@@@%%%%==*+---------::::                    ===========@@@@%%%   
-                                 :=========@###########################@@@@@%%%%====**+----------::::.                   ========**@@%%%%*   
-                                    ===========##########@@@@@#########@@@@%%%%%===***+----:::---:::::.                  *==********%%%%%    
-                                       ===========######@@@@@@@@@@@@@#@@@@@%%%%====***+:::::::---.:::::                   **********%%%%     
-                                           ============@@@@@@@@@@@@@%%%%%%%===***++--::::::::::-....::::                  *********%%==      
-                                              +=============@@@@@@@@%%%%%%%===***+++-::::::::::........:                  *********==        
-                                                   ===============@@%%%%%%%===***+++-:::::::...........                   *****+++=          
-                                                       *==========*******+++++---::           ........                    +++++++            
-                                                             ====********+++++----:.           .....                     ++----              
-                                                                    *****++++++---::            .                      -----:                
-                                                                                .--::                                :::..                   
-""")
-
-
 def game_over():
     return (r"""
  ╔┌═┐╗ ╔┌═┐╗ ╔┌┐╔┐╗ ╔┌═┐╗      ╔┌═┐╗ ╔┐ ┌╗ ╔┌═┐╗ ╔═─╗ 
@@ -740,126 +686,88 @@ def game_over():
 """)
 
 
-level = 1
+
 def display_level_art(level):
         if level == 1:
-            show_level1()
+             print(show_level1())
         elif level == 2:
-            show_level2()
+            print(show_level2())
         elif level == 3:
-            show_level3()
+            print(show_level3())
         elif level == 4:
-            show_level4()
+             printshow_level4())
         elif level == 5:
-            show_level5()
-location=level,
-
-species_data = {
-    "1": {
-        "name": "Human",
-        "ability": "Adaptability (+20 Max Health)",
-        "hp": 120,
-        "energy": 100,
-        "description": "Standard organic biology. Balanced stats with enhanced long-term durability.",
-        "effect": human()
-    },
-    "2": {
-        "name": "Hybrid",
-        "ability": "Symbiosis (+15 Base Attack)",
-        "hp": 100,
-        "energy": 100,
-        "description": "Part organic, part unknown. Aggressive mutations grant powerful physical offensive damage.",
-        "effect": hybrid()
-    },
-    "3": {
-        "name": "Cyborg",
-        "ability": "Overclock (Efficiency, costs less Energy to move)",
-        "hp": 110,
-        "energy": 120,
-        "description": "Mechanically enhanced lifeform. Massive energy storage capacity ",
-        "effect": cyborg()
-    },
-    "4": {
-        "name": "Alien",
-        "ability": "Plasma Shield (Blocks 15% incoming damage)",
-        "hp": 90,
-        "energy": 110,
-        "description": "Extraterrestrial traveler. Physically frail but shielded by unique spatial technology.",
-        "effect": alien()
-    }
-}
+            print(show_level5())
 
 
 
-if __name__ == "__main__":
-    terminal_loading_screen()
-    clear_screen()
+location=level
 
-    print("=========================================")
-    print(f"           WELCOME TO ROAM, {username.upper()}           ")
-    print("=========================================\n")
 
-    # Selection Flow
-    print("Select your Origin Species:")
-    for key, info in species_data.items():
-        print(f" [{key}] {info['name']} - {info['ability']}")
-        print(f"     └ {info['description']}")
+def display_hero(Race, username, lore, strengths, weaknesses, signature, ascii_art):
+    print("\n" + "=" * 60)
+    print(ascii_art) 
+    print("=" * 60)
+    print(f"👤 PROFILE FOR: {username.upper()}")
+    print(f"🧬 RACE:         {Race.upper()}")
+    print(f"📖 LORE:         {lore}")
+    print(f"⚔️ STRENGTHS:    {strengths}")
+    print(f"❌ WEAKNESSES:   {weaknesses}")
+    print(f"💫 SIGNATURE:    {signature}")
+    print("=" * 60)
 
-    choice = input("\nChoose your species index (1-4): ").strip()
-    if choice not in species_data:
-        print("Invalid alignment choice! Defaulting to Human lineage.")
-        choice = "1"
-
-    player_species = species_data[choice]
-
-    # Initialize Player Session Attributes
-    player_hp = player_species["hp"]
-    player_max_hp = player_species["hp"]
-    player_energy = player_species["energy"]
-    player_max_energy = player_species["energy"]
-    credits = 100
-    location = "Sector 0 - Command Hub"
-    clear_screen()
-    print("--- CHARACTER INITIALISED ---")
-    print(f"Name:     {username}")
-    print(f"Species:  {player_species['name']}")
-    print(f"Trait:    {player_species['ability']}")
-    print(f"Health:   {player_hp}/{player_max_hp}")
-    print(f"Energy:   {player_energy}/{player_max_energy}")
-    print(f"Credits:  {credits} CR")
-    print("-----------------------------\n")
-    time.sleep(2)
-
-    # --- MAIN ENGINE LOOP ---
-    while True:
-        if player_hp <= 0:
-            print("\n*** CRITICAL FAILURE: Your life signs have flatlined. ***")
-            action = input("Press [R] to restart ROAM or [E] to exit: ").lower()
-            if action == 'r':
-                restart_program()
-            else:
-                print("Goodbye traveler")
-                sys.exit()
 
 
 class RPGGameEngine:
-    def __init__(self, player_race, current_area):
+    def __init__(self, player_race, base_stats):
         self.player_race = player_race.lower()
-        self.current_area = current_area
+        self.current_area = "Sector 0 - Command Hub"
+        
+        # Player attributes linked organically to their choice profiles
+        self.hp = base_stats["hp"]
+        self.max_hp = base_stats["hp"]
+        self.energy = base_stats["energy"]
+        self.max_energy = base_stats["energy"]
+        self.credits = 100
+        
+        self.boss_defeated_for_current_level = False
 
     def roll_dice(self, sides):
         return random.randint(1, sides)
 
     def combat_roll(self, is_boss_fight=False):
-        roll = self.roll_dice(20)
-        if is_boss_fight:
-            roll -= 3
-        return max(1, roll)
+        """
+        Combat Rolls using your strict D8 core mechanics.
+        """
+        roll = self.roll_dice(8)
+        # Cap out non-boss instances at 6 as requested by rules
+        effective_roll = roll if is_boss_fight else min(6, roll)
+        
+        result = f"Combat Roll: {roll} -> "
+        if effective_roll <= 2:
+            return effective_roll, result + "Miss / enemy hits! You take damage."
+        elif effective_roll <= 4:
+            return effective_roll, result + "Normal hit dealt."
+        elif effective_roll == 5:
+            return effective_roll, result + "Strong hit dealt!"
+        elif effective_roll == 6:
+            return effective_roll, result + "Critical hit + ability trigger activated!"
+        elif effective_roll >= 7:
+            return effective_roll, result + "Boss fight specific shift triggered!"
 
     def exploration_roll(self):
-        return self.roll_dice(10)
+        """Exploration rules bracket splits (D8)"""
+        roll = self.roll_dice(8)
+        result = f"Exploration Roll: {roll} -> "
+        if roll <= 3:
+            return result + "Low roll: Hazard or enemy encounter!"
+        elif roll <= 5:
+            return result + "Mid roll: Neutral event finding an NPC."
+        else:
+            return result + "High roll: Rare item, creature, or lore discovered!"
 
     def dialogue_roll(self):
+        """Dialogue engine modifiers (D8)"""
         roll = self.roll_dice(8)
         modifier = 0
 
@@ -871,55 +779,225 @@ class RPGGameEngine:
             modifier = -1
 
         final_roll = max(1, min(8, roll + modifier))
-
-        result = f"Dialogue Roll: {roll} (Final: {final_roll} with modifiers) -> "
+        result = f"Dialogue Roll: {roll} (Final: {final_roll}) -> "
+        
         if final_roll <= 2:
-            result += f"The NPC distrusts you (influenced by your race: {self.player_race} and area: {self.current_area}). COMBAT INITIATED!"
+            result += "NPC distrusts you and engages combat!"
         elif final_roll <= 4:
-            result += "Neutral response. The NPC treats you carefully."
+            result += "Neutral stance achieved."
         elif final_roll <= 6:
-            result += "Success! The NPC gives you a quest item or vital info."
+            result += "Success! NPC gives quest item or info."
         elif final_roll == 7:
-            result += "Great Success! The NPC guides you directly to a new weapon!"
+            result += "Npc guides your direction to a weapon!"
         elif final_roll == 8:
-            result += "Perfect Success! The NPC guides you to a hidden stash of supplies!"
-
+            result += "Npc guides your direction directly to health!"
+            
         return final_roll, result
 
-print(f"\n[ Location: {location} | HP: {player_hp}/{player_max_hp} | Energy: {player_energy}/{player_max_energy} | Credits: {credits} CR ]")
-print("What would you like to do?")
-print(" 1. Scavenge Surrounding Sector (Costs 20 Energy)")
-print(" 2. Rest at Command Pod (Restores 40 Energy & 20 HP)")
-print(" 3. Access Status Terminal")
-print(" 4. Reboot Game Engine")
-print(" 5. Disconnect / Exit")
+    def load_and_fight_boss(self, boss_key):
+        """Loads and fights boss keys from the dictionary format."""
+        boss_database = {
+            "bloom_tyrant": {
+                "name": "Bloom Tyrant",
+                "type": "Mutated Bio-Flora",
+                "hp": 140, "max_hp": 140, "energy": 80,
+                "abilities": {
+                    "ascii_art": get_boss1(),
+                    "passive": "Chlorophyll Shield (Heals 10 HP per turn if not in underground sectors)",
+                    "active_1": "Nectarous Pull",
+                    "active_2": "Pistil Whiplash"
+                },
+                "description": "A massive flower mutation pulsing with toxic sap."
+            },
+            "baseline_titan": {
+                "name": "Baseline Titan",
+                "type": "Sound-wave Mech",
+                "hp": 180, "max_hp": 180, "energy": 100,
+                "abilities": {"ascii_art": get_boss2(), "passive": "Steel Plating"},
+                "description": "A sound-wave mech specializing in steel and tech-based attacks."
+            },
+            "queen_abyssara": {
+                "name": "Queen Abyssara",
+                "type": "Abyssal Monarch",
+                "hp": 190, "max_hp": 190, "energy": 120,
+                "abilities": {"ascii_art": get_boss3(), "passive": "Pressure Crush"},
+                "description": "Ruler of the deep rifts."
+            },
+            "ember_sovereign": {
+                "name": "Ember Sovereign",
+                "type": "Magma Dragon",
+                "hp": 220, "max_hp": 220, "energy": 150,
+                "abilities": {"ascii_art": get_boss4(), "passive": "Blazing Aura"},
+                "description": "A magma dragon burning through geothermal vents."
+            },
+            "rift_monarch": {
+                "name": "The Rift Monarch",
+                "type": "Cosmic-Coral Being",
+                "hp": 350, "max_hp": 350, "energy": 200,
+                "abilities": {"ascii_art": get_boss5(), "passive": "Singularity Space"},
+                "description": "The final cosmic-coral being altering reality itself."
+            }
+        }
 
-cmd = input("\nEnter selection (1-5): ").strip()
+        active_boss = boss_database[boss_key]
+        clear_screen()
+        
+        if "ascii_art" in active_boss["abilities"]:
+            print(active_boss["abilities"]["ascii_art"])
+            
+        boss_hp = active_boss["hp"]
+        boss_max_hp = active_boss["max_hp"]
+        
+        print(f"\n👹 BOSS ENCOUNTER STARTED: {active_boss['name']}")
+        print(f"Description: {active_boss['description']}")
+        
+        # Combat simulator loop
+        while boss_hp > 0 and self.hp > 0:
+            print(f"\n[Your HP: {self.hp}/{self.max_hp} | Boss HP: {boss_hp}/{boss_max_hp}]")
+            action = input("Press Enter to execute D8 Combat roll... ")
+            
+            value, msg = self.combat_roll(is_boss_fight=True)
+            print(msg)
+            
+            if value <= 2:
+                self.hp -= 20
+                print("💥 Boss counters! You lose 20 HP.")
+            elif value <= 4:
+                boss_hp -= 15
+                print("⚔️ Normal strike! Boss loses 15 HP.")
+            elif value == 5:
+                boss_hp -= 25
+                print("🔥 Strong strike! Boss loses 25 HP.")
+            elif value == 6:
+                boss_hp -= 40
+                print("✨ Critical trigger! Boss loses 40 HP.")
+            elif value >= 7:
+                boss_hp -= 50
+                print("🚨 Boss mechanic breakthrough! You dealt 50 massive DMG!")
+                
+        if boss_hp <= 0:
+            print(f"\n🎉 Victory! You defeated {active_boss['name']}!")
+            self.boss_defeated_for_current_level = True
+        else:
+            self.boss_defeated_for_current_level = False
+
+
+if __name__ == "__main__":
+    username = "Traveler" # Fallback definition if user setup wrapper missing
+    terminal_loading_screen()
+    clear_screen()
+ print("=========================================")
+    print(f"           WELCOME TO ROAM, {username.upper()}           ")
+    print("=========================================\n")
+
+    # Unified setup configuration dictionary data maps
+    profile_specs = {
+        "1": {"race": "human", "hp": 80, "energy": 50, "art": human_art()},
+        "2": {"race": "hybrid", "hp": 120, "energy": 70, "art": hybrid_art()},
+        "3": {"race": "cyborg", "hp": 150, "energy": 40, "art": cyborg_art()},
+        "4": {"race": "alien", "hp": 70, "energy": 90, "art": alien_art()},
+    }
+
+    choice_0 = input("Select a Hero profile to view (1-4 anything else takes you back): ").strip()
+    
+    if choice_0 not in profile_specs:
+        print("Invalid alignment choice! Defaulting to Human lineage.")
+        choice_0 = "1"
+
+    target_spec = profile_specs[choice_0]
+ if choice_0 == "1":
+        display_hero("human", username, "A descendant of ancient Caribbean guardians...", "Nature affinity...", "Lower tech...", "Soul wave...", target_spec["art"])
+    elif choice_0 == "2":
+        display_hero("hybrid", username, "Half human, half extraterrestrial...", "Good stats...", "High energy cost...", "Morph tide...", target_spec["art"])
+    elif choice_0 == "3":
+        display_hero("cyborg", username, "Built from coral tech and nanometal...", "High Defense...", "Water vulnerability...", "Pulse scan...", target_spec["art"])
+    elif choice_0 == "4":
+        display_hero("alien", username, "Crash-landed near Trinidad's floating reef...", "Telepathy...", "Fauna vulnerability...", "Astral echo...", target_spec["art"])
+
+    # Instantiate player engine data dynamically tracking choice index allocations
+    game = RPGGameEngine(player_race=target_spec["race"], base_stats={"hp": target_spec["hp"], "energy": target_spec["energy"]})
+
+    clear_screen()
+    print("--- CHARACTER INITIALISED ---")
+    print(f"Name:     {username}")
+    print(f"Species:  {game.player_race.upper()}")
+    print(f"Health:   {game.hp}/{game.max_hp}")
+    print(f"Energy:   {game.energy}/{game.max_energy}")
+    print(f"Credits:  {game.credits} CR")
+    print("-----------------------------\n")
+    time.sleep(2)
+
+    # --- MAIN PLAYABLE GAME LOOP ---
+    # Setup level pacing dictionary mapping
+    level_bosses = {
+        1: "bloom_tyrant",
+        2: "baseline_titan",
+        3: "queen_abyssara",
+        4: "ember_sovereign",
+        5: "rift_monarch"
+    }
+
+    while True:
+        # Check death states immediately at top of loop frame
+        if game.hp <= 0:
+            print("\n*** CRITICAL FAILURE: Your life signs have flatlined. ***")
+            action = input("Press [R] to restart ROAM or [E] to exit: ").lower().strip()
+            if action == 'r':
+                restart_program()
+                break 
+            else:
+                print("Goodbye traveler.")
+                sys.exit()
+
+        print(f"\n====================== LEVEL {game.current_level} ======================")
+        print(f" [1] Roll for Room Exploration (D8)")
+        print(f" [2] Approach Area Zone Boss")
+        print(f" [3] View Character Vital Vitals")
+        print(f" [4] Exit Game")
+        print("====================================================")
+        
+        turn_choice = input("What will you do? ").strip()
+
+        if turn_choice == "1":
+            clear_screen()
+            print(game.exploration_roll())
+            # Give player some random rewards/penalties to test engine weights
+            time.sleep(2)
+
+        elif turn_choice == "2":
+            # Target boss string according to the active level number
+            active_boss_key = level_bosses.get(game.current_level, "rift_monarch")
+            game.load_and_fight_boss(active_boss_key)
+
+            # If boss is beaten, automatically advance the level state!
+            if game.boss_defeated_for_current_level:
+                if game.current_level < 5:
+                    game.current_level += 1
+                    game.boss_defeated_for_current_level = False # Reset gate for next zone
+                    print(f"\n✨ Victory Achievement! Proceeding to Level {game.current_level}...")
+                else:
+                    print("\n🏆 CONGRATULATIONS! You have conquered the Rift Monarch and finished ROAM!")
+                    sys.exit()
+            time.sleep(2)
+
+        elif turn_choice == "3":
+            clear_screen()
+            print("--- CURRENT STATUS ---")
+            print(f"Location:  Level {game.current_level}")
+            print(f"Health:    {game.hp}/{game.max_hp} HP")
+            print(f"Energy:    {game.energy}/{game.max_energy} EN")
+            print(f"Credits:   {game.credits} CR")
+            print("----------------------")
+            input("\nPress Enter to return...")
+
+        elif turn_choice == "4":
+            print("Saving data... Goodbye traveler.")
+            sys.exit()
+            
+        else:
+            print("[Invalid choice! Select a valid menu action number.]")
 
 
 
-if player_energy < energy_cost:
-    print("❌ Insufficient energy resources! Rest up first.")
-
-player_energy -= energy_cost
-print(f"⚡ Spent {energy_cost} Energy searching the wasteland...")
-time.sleep(1.5)
-
- # Random event generation
-outcome = random.choice(["loot", "hazard", "empty"])
-if outcome == "loot":
-   found_credits = random.randint(25, 75)
-   credits += found_credits
-   print(f"💰 Success! You discovered hidden technology cache worth {found_credits} Credits.")
-elif outcome == "hazard":
-    damage = random.randint(15, 30)
-    # Apply structural armor mitigations
-if player_species["name"] == "Alien":
-    damage = int(damage * 0.85)
-    print("🛡️ Your Plasma Shield absorbed a portion of the incoming blast!")
-    player_hp -= damage
-    print(f"💥 Hazard! You triggered an abandoned automated security node and suffered {damage} damage.")
-else:
-    print("💨 The sector is picked clean. You found nothing but stardust.")
 
 
