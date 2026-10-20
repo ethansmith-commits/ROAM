@@ -1,1 +1,948 @@
 
+import os
+import sys  # The restart system
+import time
+import random
+
+
+def clear_screen():
+    """Clears the terminal screen for a cleaner look."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def restart_program():
+    """Restarts the current program."""
+    print("\nRestarting ROAM...")
+    time.sleep(1)
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
+
+
+def terminal_loading_screen():
+    print("Loading application...")
+    total_steps = 50
+
+    for i in range(total_steps + 1):
+        percent = (i / total_steps) * 100
+        bar = "=" * i + " " * (total_steps - i)
+        sys.stdout.write(f"\r[{bar}] {percent:.0f}%")
+        sys.stdout.flush()
+        time.sleep(0.01)  # Speed up slightly for testing
+    print("\nLoad complete!")
+    time.sleep(0.5)
+
+
+#& Game VALIDATION ---
+clear_screen()
+
+try:
+    age = int(input("Enter your age (must use number or game will not run): "))
+except ValueError:
+    print("Invalid age format! Exiting game...")
+    sys.exit()
+
+pegi = 16
+
+# Check age rating
+if age < pegi:
+    print("You are too young! Exiting game...")
+    sys.exit()  # Safely closes the program
+
+
+
+print(r"""
+██████╗          \  |  /       █████╗    ███╗  ███╗
+██╔══██╗      -- ▄████▄ --     ██╔══██╗  ████╗ ████║
+██████╔╝        ████████       ███████║  ██╔████╔██║
+██╔══██╗      -- ▀████▀ --     ██╔══██║  ██║╚██╔╝██║
+██║  ██║         /  |  \       ██║  ██║  ██║ ╚═╝ ██║
+╚═╝  ╚═╝                       ╚═╝  ╚═╝  ╚═╝     ╚═╝
+ """)
+
+
+PROFILE_SPECS = {
+    "1": {
+        "race": "human",
+        "hp": 80,
+        "energy": 50,
+        "lore": "A descendant of ancient Caribbean guardians.",
+        "strengths": "Nature affinity and balanced combat.",
+        "weaknesses": "Lower technological resistance.",
+        "signature": "Soul Wave",
+        "art": r"""
+     ⠀⠀ ⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⣠⣤⡀⠀⠀⡀⠀⠀⠀⠀⠀⠀
+       ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠰⢸⣧⠞⠁⡷⢿⣦⡀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+       ⠀  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠸⣼⢪⡇⠀⠀⣷⣶⢹⡇⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+          ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀..⠀⠀   ⢹⠘⣷⣄⢳⣿⣿⣾⣗⡿⠀⠀⠀⠀⢀⣟⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠿⡄⠀⠀⠀⢸⠆⣿⣿⡏⣿⣿⣿⡗⣧⠀⠀⠀⠀⢸⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣄⢧⡀⣀⡴⠋⢀⣿⣿⣷⣿⣿⣿⡇⢩⡳⢤⣀⢠⣿⣟⣿⣿⠀⢀⣠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⢫⠿⠟⢳⡇⠀⣼⣿⣿⣿⣿⣿⣿⣷⡀⢸⣷⡿⠟⠛⠛⢿⣿⣦⠓⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠑⠉⠀⠀⣾⡴⣾⡿⢹⠙⢿⡭⠭⠽⢿⣿⣿⡿⣅⣀⣀⣀⣰⣿⡟⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+             ⠀⠀⠀⠀⠀⠀⠀⢹⠋⠙⠛⢻⡿⣡⣿⠃⣸⡇⠈⠓⢤⣀⠈⠁⣿⡤⢤⣤⣬⠟⢻⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+               ⠀⠀⠀⠀⠀⡼⢀⣠⣴⣿⡟⠛⠁⠀⡏⠀⠀⠀⠂⢹⣷⣤⣾⣧⣶⣾⡍⢛⣿⣿⣿⢿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                 ⠀⠀⠀⣼⡵⠋⢹⣿⣿⣧⠀⠀⠀⡷⠀⠸⡷⣤⣴⡿⣿⣿⣿⣿⣵⣿⣶⣿⣿⡛⠒⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⡴⠂⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⡼⠛⢻⣿⡀⠀⠀⣇⣀⡆⣀⣼⣟⡂⣹⣿⣿⠻⣧⠀⠈⠉⣻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⣠⠊⠀⢀⡌⠀⠀⠀⠀
+             ⠀⠀⠀⠀⠀⠀⠀⢀⣼⣧⣤⣼⣿⡇⠀⠀⣿⢿⣼⠟⠋⠹⣿⣿⣿⡏⠀⠹⣦⣤⣾⡿⣻⣟⣛⣦⡄⠀⠀⠀⠀⢠⠞⠁⠀⢠⠞⠀⠀⠀⠀⠀
+  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡾⢹⣿⣿⣿⣿⡟⠳⡄⣿⣾⣿⠾⠿⠿⣿⡿⢿⠁⠀⠀⠹⣿⡿⠾⣿⣿⡅⢸⠃⠀⠀⢀⡴⠋⠀⠀⡴⠋⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠃⠀⠙⣿⣿⣿⡇⢄⠈⢿⡿⢁⣴⡾⢿⢿⣿⣿⣇⠀⠀⠘⣿⡁⠠⣿⣿⠳⡾⠀⢀⡴⠋⠀⠀⣠⠎⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡏⠀⢀⣼⠟⣿⣟⡀⠈⠑⣿⣿⣿⣭⣷⢾⣿⣿⣿⠿⣦⠀⠀⠹⣷⠈⢹⣿⣦⣵⡴⠋⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠡⠀⣴⢿⡾⠛⠀⣹⣆⠀⣸⣿⣿⣭⣾⡟⠻⣥⣐⣦⠈⡇⠀⠀⢹⡄⢸⣿⡇⡏⠀⠀⢀⠜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣧⢟⣿⣿⠟⢠⢃⡼⣿⡟⢷⣸⣿⣿⣿⣿⣿⣦⡈⠻⠛⠉⢳⠀⢐⣿⣧⠈⣿⡋⠁⢀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡞⢛⣾⣿⠋⢀⡼⠋⠀⣿⡇⠈⢻⢟⡟⣿⣿⣿⠙⣿⣦⣶⡖⠒⣷⣾⣿⡟⢳⣿⡗⢶⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⣼⣿⣧⣤⡾⠁⠀⣀⣿⡇⠇⢀⡾⡇⣿⣧⣿⠀⠸⣿⣿⣿⠲⣼⠻⢿⣇⣺⣿⣧⣼⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⠃⢠⡾⠁⢹⡇⠀⠚⠁⣷⣿⠷⠘⢷⡄⠀⠀⢹⡆⢸⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⣀⣤⣿⣿⣿⡿⢸⣿⠁⠀⢸⣷⠀⠀⢸⢹⣿⣗⠂⠀⠹⣆⠀⠈⣿⢸⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢬⣹⣿⢿⣿⣿⡿⠋⠀⣾⡇⣠⣴⣿⣿⢦⡀⣼⣸⣿⣿⣦⡀⠀⢹⡆⠂⣿⣿⣿⣿⣿⣿⠛⢦⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⠟⣻⢿⣿⣯⣀⡀⣼⣿⠋⠁⣈⣿⣿⣷⣻⣿⣿⣿⣿⣿⣁⣀⢸⣿⣶⣿⣿⣿⣿⣿⣿⣷⡈⢧⡘⠦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣯⠞⠁⣠⠿⠛⠻⢱⣿⡇⠠⠾⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⣿⡻⣿⣿⣿⣆⠙⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢞⣿⠏⠀⣰⠋⠀⠀⠀⢀⣿⡟⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣬⣭⣿⣿⣿⣦⣝⢷⣄⠙⢿⣿⣷⣌⠃⢀⠀⠀⠀⠏⠉⠛⠳⠄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣀⡴⢫⠞⠁⢀⡾⠁⠀⠀⠀⠀⣼⣿⣠⡶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⡟⢿⣿⣿⣯⡳⣝⠷⣿⣿⣟⠿⠻⢦⣄⡀⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣰⠋⡴⠃⢀⡴⠋⠀⠀⠀⠀⣠⢰⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣥⢸⣿⣿⣿⣿⣾⣿⣿⠿⡟⠶⣤⣄⡙⠙⢦⣝⠷⣄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡴⠃⠈⢀⣴⠋⠀⠀⠀⠀⠀⢠⢧⣿⣿⣿⢣⡿⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣤⣍⠙⠳⢶⣌⠁⠈⢳⡄⠀⠀⠀⠀
+⠀⠀⠀⠀⣸⠁⣀⡴⠛⠁⠀⠀⠀⠀⠀⢠⢏⣿⣿⣿⠹⡟⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣙⠓⠈⠀⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠻⠚⠁⠀⠀⠀⠀⠀⠀⠀⢠⣟⣾⣿⣿⣿⠀⡴⠋⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣃⡃⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡠⢤⠴⠒⢋⣾⣿⣿⣿⠇⡀⠂⢡⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣙⡇⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠠⣄
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⣶⣎⣁⣀⣀⣼⣿⣿⣿⣿⡮⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡌⢻⡇⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 
+        """
+    },
+    "2": {
+        "race": "hybrid",
+        "hp": 120,
+        "energy": 70,
+        "lore": "Half human, half extraterrestrial.",
+        "strengths": "Balanced health and energy.",
+        "weaknesses": "Abilities consume energy.",
+        "signature": "Morph Tide",
+        "art": r"""
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢱⣦⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣷⠀⠀
+⠀⠀⠀⠀⣀⣤⣴⣶⣶⣶⣶⣶⣾⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣤⣴⣶⣶⣶⣶⣶⣾⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣴⣾⣿⣿⣿⣿⣿⣿⣏⣩⣸⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣴⣾⣿⣿⣿⣿⣿⣿⣏⣩⣸⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                
+⠀⣿⣿⣟⣿⣫⣿⡽⠋⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                 
+⠀⢆⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                  
+⠀ ⡿⣿⣿⣿⣽⣽⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                   ⠀⠀              
+⠀⢸⡿⡿⢿⢿⡿⣿⣿⣆⡀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                 ⠀⠀                 
+⠸⣯⣋⢿⡯⣯⣽⣿⢿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀ ⣶⣾⣿⣿⣿⣿⣿⣿⣿⣷⣶⣦⣖⣀⢣⡝⣹⣿⣿                   
+⢻⣿⣿⢮⣟⣿⣷⢒⢝⣿⣿⠃     ⢠⣡⣼⣶⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣬                
+⠙⢯⣿⣛⣺⣿⣏⣯⢿⣿⠃     ⣼⣟⣥⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣥            
+    ⢻⣿⣿⢮⣟⣿⣷⢒⢝⣿⣿⠃⣎⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦
+     ⠙⠻⣟⡹⣿⣯⣽⣿⣣⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠠
+       ⠙⠻⢿⣿⣯⣻⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶
+        ⠀⠀⠀⢌⣼⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧
+    ⠀⠀⠀⠀⠀⢸⠃⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢣⡽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠤⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀    ⠁⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⡲⠁⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠐⠒⠒⠛⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢹⠁⠀⠀⣘⣿⣿⣿⣿⣿⣿⣿⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣀⣴⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⡶⢿⡹⣿⣿⣿⣿⣿⣿⣛⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⣷⣿⣷⣿⣗⣳⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⢿⣿⣿⣟⣟⣿⣿⣿⣿⠿⣇⠶⠶⠾⠿⠿⢷⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⢻⣿⣿⣟⠿⡾⠿⠟⠉⠑⠹⡟⠉⠙⢆⠀⠃⠀⠀⠀⠰⠺⠉⣿⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣷⣭⣹⣏⠋⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⡈⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⣸⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣄⠀⠀⠈⠉⠁⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣦⣀⠀⠀⠀⢀⣤⣾⣟⡿⢃⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣞⣿⣻⡷⣿⣻⢯⡷⢋⠔⡡⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣞⣳⢯⣟⣷⢏⠫⡐⣡⣮⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣄⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄  
+⠀⠀⠀⠀⠀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+        """
+    },
+    "3": {
+        "race": "cyborg",
+        "hp": 150,
+        "energy": 100,
+        "lore": "Built from coral technology and nanometal.",
+        "strengths": "High health and defence.",
+        "weaknesses": "Limited energy reserves.",
+        "signature": "Pulse Scan",
+        "art": r"""
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣦⣼⣭⣭⣤⣭⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⣿⣿⣿⣿⣿⣿⣿⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠈⣽⣿⣿⣿⣿⣿⣽⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣦⣴⣄⣀⣴⣦⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣄⣀⣠⣄⣤⣠⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠠⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣠⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿ ⡴⠚⠉⠉⠓⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣥⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣿⣿⣿⣟⡿⠛⣿⣿⣿⣿⣿ ⣇⠀⠀⠀⠀ ⡇ ⣊⣿⣿⣿⠟⢻⣿⣿⣿⣿⣗⠀⠀⠀⠀
+⠀⠀⠀⢀⢀⣧⣿⣿⣿⠯⠅⠀⠈⠿⣿⣿⣇⠈⠳⠤ ⠖⠋⠀⣿⣿⣿⠏⠀⠹⢿⣿⣿⣿⣿⠄⠀⠀
+⠀⠀⠀⣢⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⢻⣿⣿⣿⣾⣿⣿⣿⣷⣾⣿⣿⡃⠀⠀⠀⠀⢘⣿⣿⣿⣿⣿⣇⠀
+⠀⠀⠀⢸⣿⣿⣿⣿⡟⠀⠀⠀⠀⡀⣚⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⠀⠀⠀⠀⠐⠻⣿⣿⣿⣿⣗⠀
+⠠⠀⠄⣴⣿⣿⡿⠆⠀⠀⠀⠀⢠⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠆⠀⠀⠀⠀⠹⢿⣿⣿⡷⠀
+⠀⠀⠎⣹⣿⣿⣏⡀⠀⠀⠀⠰⣉⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣹⣿⣿⣿⣿⣉⡀⠀⠀⠀⠀⣸⣿⣿⣏⠀
+⠀⠀⠁⢸⣿⡯⡿⢯⠈⠀⠀⠡⣿⣿⣿⣿⣿⣿⣽⢿⠿⠏⣿⣿⣿⣿⣿⣿⣿⠅⠁⠀⠀⠡⠿⠿⣿⡯⠅                            
+⠀⠀⠀⠘⠙⡿⠏⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣟⠀⣹⣿⣿⣿⣿⣿⣿⣿⡃⠂⠀⠀⠀⢀⢻⡛⠋⣀                         
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⣿⣿⣿⣿⣿⣿⣟⠓⠀⠘⣿⣿⣿⣿⣿⣿⣿⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠽⣿⣿⣿⣿⣿⠧⠀⠀⠀⠼⣿⣿⣿⣿⣿⠯⠀⠀⠠⠀⠀⠀⠀                   ⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢐⣭⣿⣿⣿⣿⡏⠁⠀⠀⠀⠈⢹⣿⣿⣿⣿⣯⡀⠀⠀⠀⠀⠀⠀⠀⠀            ⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣔⣿⣿⣿⣿⣗⠀⠀⠀⠀⠀⠀⠀⣻⣿⣿⣿⣿⣢⡀⠀⠀⠀⠀⠀⠀⠀⠀            
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⡦⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀              ⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⠉⠁⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⡯⠀⠀⠀⠀⠀⠀          ⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢐⣻⣿⣿⣿⣿⡓⠀⠀⠀⠀⠀⠀⠐⠘⣿⣿⣿⣿⣟⡃⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⢸⣿⣿⣿⠧⠀⠀⠀⠀⠀⠀⠁⠀⠀⠼⣿⣿⣿⡷⠀⠀⠀⠀⠀⠀⠀           ⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⢹⣿⣿⣿⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣽⣿⣿⣯⠁⠀⠀⠀⠀⠀ ⠀⠀                      
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡤⣼⣿⣿⣿⣏⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢺⣿⣿⢿⢿⡟⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⢿⡿⣿⢻⡶⡄⠀⠀⠀⠀⠀       
+⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠁⠈⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠉⠈⠉⠁⠀⠀⠀⠀⠀
+        """
+    },
+    "4": {
+        "race": "alien",
+        "hp": 70,
+        "energy": 90,
+        "lore": "Crash-landed near Trinidad's floating reef.",
+        "strengths": "High energy and powerful abilities.",
+        "weaknesses": "Low starting health.",
+        "signature": "Astral Echo",
+        "art": r"""
+
+⠀⠀⣠⣶⢶⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢰⣿⠃⠛⠹⡻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣄⣠⣤⣤⣤⣤⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢿⡆⠀⠀⠈⠈⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⡴⠞⠛⠿⠯⠻⠛⠉⠉⠉⠀⠀⠈⠉⠉⠛⠓⠶⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠙⣦⠀⠀⠀⠀⣷⠀⠀⠀⠀⠀⠀⣀⣤⣶⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⡶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠘⣷⠀⠀⠀⠼⣇⠀⠀⠀⠀⢸⠟⣡⠤⠖⠒⠀⠀⣤⣶⣿⣿⣿⣿⣿⡿⣿⣿⣿⣶⣦⣤⣄⣀⠠⢤⣀⠀⠀⠀⠉⠻⢭⡳⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⣷⠠⢳⣄⣹⡄⠀⠀⠀⢸⡞⠁⠀⠀⠂⢠⣾⣿⣿⡇⢸⢻⢹⡿⢠⣿⢿⣿⢻⣿⣿⣿⣿⣿⣦⣌⠙⢦⠀⠀⠀⠀⠘⢷⡜⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⣧⠹⣽⣿⣿⡄⠀⠀⠈⢧⡀⠀⠀⠀⣿⣿⡏⣿⡇⢸⣿⣼⣧⣿⣿⣿⣯⣿⣿⡟⢹⣿⣿⣿⣿⣿⣦⠛⣤⠀⠀⠀⠈⢷⡄⠙⢦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠘⣧⢻⣛⣿⢧⠀⠀⠀⠀⠻⣤⣠⣤⣿⣹⣷⣿⣷⣤⣿⠟⠛⠛⠛⣻⣿⣿⣿⣷⡛⢻⡿⢫⣿⣿⣿⣿⣦⢷⠀⠀⠀⠘⣾⣆⠀⢻⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢻⣏⠏⠋⢻⢧⠀⠀⠀⠀⠈⠛⢿⣿⣿⣾⣿⡿⠛⠁⠀⣠⡴⢛⣿⣿⣿⣽⢛⡛⠾⣧⣿⣿⣿⢟⣻⣿⡜⠀⠀⠀⠀⢈⣿⡇⢹⡹⣄⠀⠀⠀⠀
+⣤⡀⠀⠀⠀⠀⠀⠀⠀⣿⡸⣾⡽⠟⣧⡀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⠖⣲⡾⡇⠀⢿⣿⣿⣿⣿⣿⣿⣴⣾⣻⣿⣿⣿⣾⣿⣿⡄⠀⠀⠀⣾⣿⣇⠸⣟⣟⣆⠀⠀⠀
+⠄⢬⣽⣛⠶⢶⣦⣤⣤⣸⣇⢋⠔⣻⠭⢳⡀⠀⠀⠀⠀⠀⣸⣷⡿⣿⣿⣻⡇⣨⣽⣿⣿⡟⣻⢿⣿⣿⣿⣷⣿⣿⣿⣿⣿⣿⠘⣿⣄⡀⠀⡏⢿⣻⠀⣿⣿⣿⡆⠀⠀
+⣾⢾⡀⡼⣿⠛⢓⠶⢒⣽⣻⣯⡞⣡⣞⡧⣝⣦⡀⢠⡾⠋⢉⣾⣿⣿⠟⢻⣿⣿⡛⢦⣄⣄⣿⢿⣻⣿⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣜⣆⡇⠈⢿⡇⣿⣿⣿⣿⠀⠀
+⠉⠓⠾⢭⣝⣲⣛⣴⢯⣠⠛⣻⣞⢿⠋⡤⡻⢷⡙⢿⣶⣯⣣⣞⣋⣥⣶⠌⣻⣿⣿⣿⣓⡿⢿⣿⢥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣾⡜⢷⡀⠀⡇⣿⣿⣿⣿⡆⠀
+⠀⠀⠀⠀⠀⠉⠉⠙⠛⠾⢽⣿⣻⣶⣿⡰⠀⡴⢛⣶⡈⠉⣿⠉⠉⣹⣧⣵⡟⢻⣉⣿⣿⣻⣶⣽⢻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠹⣿⣿⢿⣮⣎⡳⠄⣠⣿⣿⣿⣿⡇⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣿⣿⣿⣾⣷⠋⠋⠀⣽⠏⠀⠘⢻⣟⣯⣍⣿⣿⢿⣯⡟⠚⢿⣇⠹⣿⣿⣿⢹⣿⣿⣏⡇⠀⠨⣿⣿⣿⣿⣿⣼⣿⣝⣿⣿⡿⠀⠀
+⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢨⣿⣿⢿⣿⡿⣶⣶⣶⣾⣶⣶⣶⣾⢁⢲⠶⠿⢻⣿⠯⣝⣦⣸⣿⡄⣹⣿⡿⢸⢫⣿⠙⢯⣆⡃⣿⣿⡿⢿⣟⡿⣿⣿⣿⣿⡇⠀⠀
+⡉⢳⣄⠀⠀⠀⠀⠀⠀⠀⠀⣴⢯⣁⣴⡾⠟⢛⠋⠛⠿⣽⣭⢙⡿⠍⣿⠟⢀⡴⠺⣯⣶⣾⣿⣿⣿⣷⣿⣿⣇⣿⡿⠋⠀⠀⠈⠙⠻⢯⣉⣉⣱⣯⣾⣯⣿⠋⠀⠀⠀
+⢁⡴⣿⣷⣄⠀⠀⠀⠀⣀⣀⣽⣾⡟⢉⣴⣿⣿⣿⣿⣦⣌⣹⠟⢰⠞⢁⣴⣯⣶⣿⣿⣿⣿⣿⣾⣿⣿⡿⢿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⡿⠿⣿⠋⠀⠀⠀⠀
+⣯⣿⣯⠷⣿⢧⣀⠀⠀⣿⣯⢟⣿⣷⣿⣿⣛⣉⣘⣿⡿⢟⣁⣲⠏⣠⣾⣿⣿⣿⣿⣿⣿⣟⣩⣿⣿⣿⠷⢪⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠿⣶⠋⠀⠀⠀⠀⠀
+⣏⣻⣇⡞⢉⡷⠿⡷⣾⣿⣷⣾⣯⣭⣀⢽⣵⡿⠿⠉⠀⣤⡿⠁⣰⣿⣿⣿⣷⣿⣽⣿⣿⣿⣿⣾⣿⣿⡶⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠙⣿⣿⣇⡟⠀⠞⠀⡿⣹⠉⡿⢿⡎⠹⠾⣏⠀⠀⢀⡴⠋⠀⠸⢿⣿⣿⢿⣟⡿⣏⣯⡿⠿⢧⣹⠏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣶⣿⡿⣿⣿⣶⠦⣾⣷⠟⢰⡇⡼⢱⣀⣴⣾⠷⡚⠉⠀⠀⠀⢀⡆⢉⣿⣸⡿⠷⠼⠿⠷⠟⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢿⣿⡇⣿⣹⣿⣷⢶⣯⣶⢯⣿⣷⣿⣽⣏⠀⠀⠁⠀⠀⠂⠀⠘⠃⡞⡏⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠹⣿⣿⣿⣿⢻⣤⣀⠉⢻⣦⣽⣿⡵⣿⣷⣤⡀⠀⣵⣄⠀⠀⠀⣇⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠉⣛⡿⠘⠛⠛⣤⣤⠝⠛⠛⠛⠋⠙⠃⠙⣤⠀⣼⣤⠀⠀⢻⠀⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣾⡁⣀⣤⣤⠀⠉⠀⢀⣠⣴⡾⠯⠭⠿⣤⣈⠻⣇⡎⠳⡄⠈⢧⡈⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢘⡧⣼⣼⡿⠀⢰⡿⠋⠀⠀⣀⣀⣀⡀⠀⠙⠛⢻⡄⠀⠘⢇⠈⢣⡘⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⡁⠈⠉⢀⣀⠀⠀⣰⣿⠕⣲⣶⣿⠛⠓⠚⠃⠀⠻⣄⠈⠻⡇⠀⢧⠈⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢧⠀⠘⡍⣽⡄⠀⠛⠁⠀⠛⠋⠀⠀⠀⠒⠉⠀⠀⠈⠛⢾⣼⣆⠈⢧⠀⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢠⣤⡀⠛⣿⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⢦⡀⠀⢦⡙⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠈⠛⠁⠀⠘⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠑⠄⠛⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⢤⡀⠀⠈⠛⠓⠤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠳⣄⠀⠀⠀⠈⠛⠦⢤⣤⣤⣤⣤⣤⣄⣀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⠿⣷⢦⣀⠀⠀⢀⣀⠀⠉⠀⠈⠉⣉⡽⠿⣿⣿⣲⣦⡀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠚⠶⠿⣿⣿⡙⠒⠒⠚⠉⠁⠀⠀⠈⠙⠿⣿⣿⣄
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⢷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        """
+    }
+}
+
+
+
+
+LEVEL_DESCRIPTIONS = {
+    1: "A tropical island of glowing flowers and poisonous vines.",
+    2: "A futuristic city of steel towers and rogue machines.",
+    3: "An underwater kingdom hiding forgotten civilisations.",
+    4: "A volcanic wilderness of molten rivers and fire creatures.",
+    5: "Floating coral islands where reality begins to break."
+}
+
+ENEMIES = {
+    1: [
+        {"name": "Thornling", "hp": 35, "damage": 5},
+        {"name": "Toxic Sporeling", "hp": 45, "damage": 7},
+        {"name": "Vine Stalker", "hp": 55, "damage": 8}
+    ],
+    2: [
+        {"name": "Scrap Drone", "hp": 50, "damage": 8},
+        {"name": "Sonic Hound", "hp": 65, "damage": 10},
+        {"name": "Iron Sentinel", "hp": 80, "damage": 12}
+    ],
+    3: [
+        {"name": "Rift Crawler", "hp": 65, "damage": 10},
+        {"name": "Deepwater Wraith", "hp": 80, "damage": 13},
+        {"name": "Abyssal Guardian", "hp": 95, "damage": 15}
+    ],
+    4: [
+        {"name": "Cinder Wolf", "hp": 80, "damage": 13},
+        {"name": "Lava Brute", "hp": 100, "damage": 16},
+        {"name": "Magma Drake", "hp": 120, "damage": 18}
+    ],
+    5: [
+        {"name": "Voidling", "hp": 100, "damage": 15},
+        {"name": "Reality Breaker", "hp": 125, "damage": 19},
+        {"name": "Coral Colossus", "hp": 150, "damage": 22}
+    ]
+}
+BOSSES = {
+    1: {
+        "key": "bloom_tyrant",
+        "name": "Bloom Tyrant",
+        "type": "Mutated Bio-Flora",
+        "hp": 140,
+        "damage": 12,
+        "description": "A massive flower mutation pulsing with toxic sap.",
+        "art": r"""
+
+================================================================================
+🌺T H E  B L O O M  T Y R A N T-  F L O R A   I N F U S E D   B U T T E R F L Y🌺
+================================================================================
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠲⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠢⣄⣴⠇⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡦⠀⠀⠀⠀⠀⠀⢰⣄⠀⠁⣰⡿⠀⠀⠀⠀⠀⠀⠀⢠⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⡆⢀⠻⢧⢰⠋⠀⣀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠰⠀⠠⣸⣸⡆⡈⠇⢀⡄⢿⡸⠄⠲⠂⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⢠⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣄⢰⣿⠇⠀⠀⠀⢾⠖⠀⠀⠲⡀⠂⢠⢀⡀⠀⢀⠀⢄⣀⡙⢇⡟⠀⢸⢇⠿⠟⠋⠀⠀⠀⠀⡄⡆⠀⡇⠜⠀⠀⠠⣿⠄⠀⠀⠘⣿⡇⢠⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠙⣼⢃⠴⠗⠀⠀⠀⠀⠀⠘⠓⣚⠣⡘⡜⠀⠀⠘⠳⣀⠈⢉⣑⢧⡀⣸⣥⡤⢀⡤⠛⠀⢀⠀⢸⢃⠴⢛⠊⠃⠀⠀⠘⠀⠀⠘⠓⣌⢣⠏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⠀⠀⡿⢁⣤⠀⣀⠀⠀⠀⠀⠀⠠⠝⢒⠾⠵⣀⠃⠀⡤⠾⠓⠒⡛⢝⡷⢩⠔⠈⠁⠓⠂⠀⠈⣇⠾⠷⢔⠛⠄⠀⠀⠀⠀⠀⣀⠀⢤⣌⢻⠀⠀⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⣷⠀⣧⠿⠋⡠⠋⣡⡄⠀⠸⠂⠀⠀⠃⠀⠀⠘⡆⠀⠀⠒⠀⠀⠻⢦⠱⣽⠟⠁⠀⠘⠀⠀⢠⠏⠀⠀⠈⠃⠀⠀⠗⠀⠀⣤⡉⢦⠈⠻⢿⡇⣾⡇⠀⠀⠀⠀⠀
+⠀⠀⣄⠀⠠⣤⣽⡀⡏⠀⡰⠓⠉⠀⠀⠀⠀⢀⡀⠀⠀⠐⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠳⠁⠀⠀⠀⢀⠀⠀⠘⠀⠀⠒⠀⠀⣀⣀⠀⠀⠀⠀⠈⠑⢷⠀⢸⣇⢋⣴⠆⠀⣠⠀⠀
+⠀⠀⢻⣧⣦⢀⡉⠹⡇⢰⠁⢀⣆⠀⠀⠀⣾⣿⣟⣋⠁⠒⢤⡀⠀⠀⠈⣿⠁⠀⠀⠀⢠⠀⠀⠀⠀⢹⠃⠀⠀⢀⣠⠒⠈⡙⣹⣿⣿⠆⠀⠀⢰⡀⠀⡇⢸⠟⠉⡀⢴⢰⡿⠀⠀
+⠀⢀⣀⠙⢶⢸⣷⠀⢹⣼⠀⣾⡿⠀⡀⠀⠹⣿⠓⡁⢄⡉⠑⠻⡶⣄⠀⠀⠀⢠⡄⠀⠀⠀⠀⡄⠀⠀⠀⣠⢾⠟⠋⣁⡠⠄⠼⣿⡏⠀⠀⠀⢸⣿⠀⢸⡌⠀⢼⡇⡨⢊⣀⡀⠀
+⠀⠀⠙⠿⠾⢯⣃⠰⠆⢻⠀⡿⢡⣶⡇⠀⠀⢹⢫⠥⠆⠂⠡⢒⢤⣺⠷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠾⣃⡤⡒⠍⢀⠴⠬⠓⡟⠀⠀⠀⣷⣄⢻⠀⡼⠱⡆⢸⡵⠕⠻⠋⠀⠀
+⠀⠀⠀⠀⠀⢀⠈⣲⢧⠈⢣⢣⡿⠋⠀⠀⠀⠈⢆⠀⠙⠉⢉⣻⣿⣿⣿⠛⢳⣄⠀⢄⠀⡐⠀⣠⡾⠋⣻⣿⣿⣯⣭⣀⣈⠠⣬⠁⠀⠀⠀⠙⢿⢸⡴⠁⣸⣔⣁⣀⠀⠀⡀⠀⠀
+⠀⠀⠸⠃⠀⠙⣥⠊⠉⠙⠢⢿⡁⢀⣄⢠⣦⠀⠹⠉⠒⠓⠀⢈⣙⣻⣿⣾⣮⡽⢳⣠⣿⣄⣖⠯⡴⢾⡿⢯⣉⡉⠉⠘⠋⠍⡟⠀⢸⡆⢠⡀⢀⡿⠔⠋⠉⠙⣦⠉⠀⠀⡟⠀⠀
+⠀⢠⣄⠀⠀⠀⠀⠀⢤⣤⣤⣀⠉⢢⡉⠪⡟⠀⠀⠙⢷⣀⡁⣁⡠⠠⠬⢷⣞⣉⣽⣿⣟⣿⣯⣁⡙⡗⠫⠴⠤⣠⣉⣁⡰⠋⠀⠀⢸⡷⠉⡴⠋⣠⣤⣤⡤⠀⠀⠀⠀⠀⣀⡄⠀
+⠀⠸⣿⣷⡀⠀⢢⣄⠀⠈⠉⢉⡁⠦⠽⣤⢳⠀⠀⣠⡀⠈⢉⡽⢟⢛⠻⠟⡻⠋⣾⣿⢿⣿⣿⠌⢫⡻⠿⣛⢛⠿⢍⠁⠀⣤⠀⠀⣘⣤⠯⠔⢊⣍⠉⠁⠀⢀⣴⠀⠀⣼⣿⡇⠀
+⠀⠀⠙⠻⢇⠀⠸⣿⣦⠀⠀⢈⠀⠀⠀⠈⠙⢧⡀⠉⠀⢀⣏⠔⠃⡁⣡⣞⠄⡼⣹⣿⡿⣿⢿⢷⡤⣽⣦⣐⠹⡃⣝⡄⠀⠉⠀⡴⠋⠁⠀⠀⠀⣀⠀⠀⣰⣿⠏⠀⡸⠟⠋⠀⠀
+⠰⠾⠿⠿⠷⠛⠢⠌⢻⣇⠀⠈⢿⣦⠀⠀⠀⠀⠑⣄⠀⠀⢿⣔⣬⣜⣿⣿⣮⣧⡏⠻⢿⠟⠈⣜⣷⣿⣿⣳⢔⣵⡽⠁⠀⢠⠎⠀⠀⠀⠀⣴⣿⠃⠀⣠⡟⠡⠔⠚⠻⠿⠿⠿⠶
+⠀⠀⠀⠀⠀⠲⢿⣿⣶⢬⡭⠶⠦⠽⣆⠀⠀⠠⠄⠈⣧⠀⠀⠙⣇⣼⠻⠿⣏⡿⠀⠀⠀⠀⠀⢾⣽⡻⡏⢑⣴⠋⠀⠀⡰⠃⠀⠄⠀⠀⣠⠯⠔⠾⠭⣤⢶⣿⠿⠗⠂⠀⠀⠀⠀
+⠀⠀⠀⢠⣴⣾⣷⠶⠈⠁⣤⣶⡶⠂⠈⠑⠦⡀⠀⠀⠈⢇⠀⠀⠈⢳⣿⢦⣷⠃⠀⠀⢺⠂⠀⠈⢿⡧⢷⡞⠁⠀⠀⢰⠃⠀⠀⢀⡔⠊⠁⠀⠺⣶⣦⡀⠁⠲⣿⣿⣶⣄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠉⠁⠀⠀⠀⠀⠀⠘⠀⠀⠀⠘⠆⠀⠀⠀⡿⢸⠃⠀⠀⠀⢀⠀⠀⠀⠈⠇⣼⠀⠀⠀⠀⠃⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⢀⣤⡀⠘⠃⠀⠀⠀⠀⡀⠀⠀⢰⣛⠎⢠⡄⠀⠀⢸⠀⠀⢠⡄⠸⣘⡆⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⣠⡀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⠀⢀⠄⠀⠈⠇⠀⢀⣤⡿⠀⠀⠀⠀⠀⣼⠄⠀⠀⠀⠀⠹⣼⡄⠀⠘⠗⠀⠀⡀⠀⠀⠀⠘⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣤⡄⠀⠰⣄⠀⠀⠀⠀⠀⡠⠊⠀⠀⠀⢀⣤⡾⠊⠀⠀⢀⣤⣶⢊⢾⡎⠢⣤⣄⡀⠀⠙⠿⣦⢄⠀⠀⠀⠈⠢⡀⠀⠀⠀⠀⣠⡞⠀⠀⣦⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢈⣉⠴⠦⠭⠷⠤⢤⠴⡎⠀⠀⠀⣴⠾⠕⠉⠀⠀⠀⠀⠉⢉⡴⠃⢸⠘⣄⠈⠛⠓⠀⠀⠀⠈⠑⠿⣦⠀⠀⠀⢸⡲⣤⠤⠶⠭⠴⠦⠍⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡀⠀⠀⢦⣤⣀⠀⢀⣠⠶⢁⢜⡄⠀⠀⠀⠃⠀⠀⠀⣀⣤⠔⢒⡼⢁⣼⠀⢸⠀⢸⠢⣀⠀⠀⠀⣀⣀⡀⠀⠘⠃⠀⠀⢠⡗⣀⢓⢦⣀⠀⣀⣤⡶⠂⠀⢀⡀⠀⠀⠀
+⠀⠀⡀⠀⠚⠢⠤⢤⣤⠍⠋⡱⢁⠃⠉⢸⠇⠀⠠⠀⠀⠀⠀⣴⠟⢋⡔⢱⠁⠘⣿⠁⢸⠀⣸⠀⠈⠻⣏⠡⠬⣙⠛⠂⠀⠀⠤⠀⠸⡏⠈⠈⡏⢪⡑⠢⢤⣤⠤⠐⠒⠃⢀⠀⠀
+⠀⠀⠟⠃⢀⠜⠉⣡⠡⠾⢻⠁⢸⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠎⢠⣷⠀⠀⠁⢀⠿⡄⢿⠃⠀⠀⣋⠣⡀⠈⠻⣷⡄⠀⠀⠀⠀⠁⠀⢠⡇⠀⣏⠻⠆⢢⡈⠛⣄⠈⠓⠂⠀
+⠀⠀⠀⠀⠃⠀⠼⠋⠀⢀⣼⡀⠘⠇⠀⠀⠀⠀⣠⠀⠀⠀⠀⣠⣎⠀⠘⣿⠇⠀⣤⠃⢠⢰⣌⠀⠀⢠⣿⠀⢰⣄⠀⠀⠀⠀⢀⠀⠀⠀⠀⠘⠇⠀⣼⡄⠀⠈⠿⠀⠈⠃⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠈⢿⠀⠀⠀⠀⣿⡟⠀⠀⠙⠀⢸⡿⠀⢠⠀⢿⣧⠀⠸⠟⠀⢸⣿⣆⠀⠀⠀⢺⠃⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠈⠁⠀⣀⠀⠀⠙⠀⠀⠀⠀⠈⢻⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+================================================================================
+        """
+},
+    2: {
+        "key": "baseline_titan",
+        "name": "Baseline Titan",
+        "type": "Sound-wave Mech",
+        "hp": 180,
+        "damage": 16,
+        "description": "A powerful mech specialising in steel and technology.",
+        "art": r"""
+
+================================================================================
+      🤖B A S S L I N E   T I T A N ‑ a   s o u n d ‑ w a v e   m e c h🤖
+================================================================================
+
+                 ⠀⠀⠀⠀⠀⠀⠀⢰⣶⣶⣶⠦⢄⣠⡟⢁⡔⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣾⣿⡀⠀⠀⠀⠀⢹⣿⣿⣄⣤⣶⡒⢦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣀⠀⠹⣿⠿⣿⣦⡀⢀⡀⢛⣿⢿⣭⣿⣻⣿⣾⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣤⠖⠋⠀⣀⣼⣧⣼⣧⠀⢈⣹⣿⣶⣷⣾⣿⠀⠈⠻⣿⣿⣿⠟⢰⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣠⣀⣠⣾⠛⠁⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣶⣦⠀⠹⡿⠷⠴⣿⣿⠸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣾⣿⣿⣿⣷⣤⡴⠛⣹⣿⠿⣿⠟⠁⠀⠀⣸⣿⣿⣿⣿⣿⣾⣿⣿⣿⣦⣇⠀⠀⠘⣿⣦⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠈⠉⢻⣿⣿⣿⣷⠞⠛⠁⠀⠀⠀⠀⠀⠀⠛⣿⣿⣿⣿⣿⣿⣯⣽⣿⣿⡏⠀⣿⣿⣿⣿⡎⢠⣤⣶⣦⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠰⣿⡋⠙⠉⠏⠀⠀⠀⠀⠀⠀⠐⠗⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⡟⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠙⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠈⣹⣿⡿⠻⣿⣿⣿⣿⠛⠟⠰⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⠀⠓⠀⠀⣰⠟⣽⠃⣹⠛⠉⠻⣶⣄⢹⠻⡿⣷⡀⠀⠀⠈⠙⠛⠛⠛⠛⠻⡿⠏⠈⠛⠙⠛⠿⢷⣶⣤⣄⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⠂⠀⠀⠀⠀⣠⣿⡟⣏⠀⡟⠀⠀⢀⡿⣿⣾⠀⣰⣿⣃⣶⠦⠤⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠻⢷⣶⣤⣀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠖⠚⣿⣿⣸⣿⠀⠛⠳⢶⠞⣠⣿⣏⣰⣿⣿⣛⠻⣷⣄⠀⠻⡙⢦⣄⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠛
+⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠶⣤⣿⣿⣿⣿⣿⣼⣧⣤⢀⡿⢿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣷⣦⠙⣦⣸⡷⣿⡆⠠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢁⣿⣿⣿⣿⣿⡿⣿⣿⣿⡿⠃⠈⠙⠛⠛⠿⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣄⣾⡟⠀⠈⠓⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠟⢩⣿⣿⡇⠁⢠⣿⣿⡿⠀⠀⠀⠀⠀⢠⣤⣶⣾⣿⣿⣿⢿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠏⠀⠈⢿⣿⣧⣴⣿⣿⣿⠇⠀⠀⡀⢀⣶⣼⣿⣿⣿⢿⣿⣿⣶⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⠉⠀⠟⠀⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⠿⠟⣿⡿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⣾⣿⣿⣿⣿⡟⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡅⠀⠀⠀⠀⠈⠙⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⢹⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠐⠻⠿⠿⠿⠿⠿⠿⠿⠿⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⡿⠶⠶⠾⠿⠿⡶⠲⠗⠒⠒⠒⠶⠶⠒⠒⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+================================================================================
+        """
+    },
+    3: {
+        "key": "queen_abyssara",
+        "name": "Queen Abyssara",
+        "type": "Abyssal Monarch",
+        "hp": 190,
+        "damage": 18,
+        "description": "The ruler of the deep rifts.",
+        "art": r"""
+
+================================================================================
+🪼Q U E E N   A B Y S S A R A ‑ c o s m i c   e n t i t y🪼
+================================================================================
+       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⡿⠀⢻⠳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠉⠀⣰⠃⠀⠈⣇⠀⠙⠲⣄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⠀⠀⢠⠇⠀⠀⠀⠸⡄⠀⠀⠈⢳⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⡞⠀⠀⠀⠀⡾⠀⠀⠀⠀⠀⢷⠀⠀⠀⠀⢻⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠳⣄⠀⠀⣸⠁⠀⠀⠀⠀⠀⠘⡆⠀⠀⣠⠏⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⢲⡏⠀⠀⠀ o⠀⠀⠀⢻⠖⠊⠁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠁⠀( (0)⠀)⠀⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏⠀⠀⠀⠀⠀o⠀⠀⠀⠀⣷⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀o⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀o⠀⠀⠀⠀⣸⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀o⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣇⠀⠀⠀⠀⠀o⠀⠀⠀⠀⡟⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢠⠶⡄⠀⠀⠀⠀⠀⠀⢻⠀⠀⠀⠀ o⠀⠀⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢸⡀⡇⠀⠀⠀⠀⠀⠀⢸⣶⣿⣦⡀⠀⢀⣠⣤⣼⠁⠀⠀⠀⠀⠀⠀⢀⠀
+⠀⠀⡇⣇⠀⠀⠀⠀⠀⠀⠸⣿⣿⣡⠗⠒⣾⣿⣿⢹⡆⠀⠀⠀⠀⠀⣴⠉⡇
+⠀⠀⣇⠹⣄⠀⠀⠀⠀⠀⣸⠉⠉⠀⠀⠀⠈⠛⣷⠋⠀⠀⠀⠀⠀⢀⡏⡼⠁
+⠀⠀⠘⣦⠈⠳⠤⣤⣀⣠⠇⠀⠀⠀⠀⠀⠀⠀⡏⠀⠀⠀⠀⠀⣠⠞⢠⠇⠀
+⠀⠀⠀⠈⠙⠲⣤⣤⠴⠋⠀⠀⠀⠀⠀⠀⠀⢠⡗⠒⠶⠶⠖⠚⢁⡴⠋⠀⠀
+⠀⠀⢀⡴⠚⢉⣁⣀⡀⠀⠀⠀⠀⠀⡀⠀⡀⢸⠛⣖⠒⠒⠒⠚⠉⠀⠀⠀⠀
+⢴⣶⡯⠔⠚⠉⣠⠞⢁⣴⠂⣠⡏⢰⣇⠀⢿⠀⢧⠀⢳⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣠⠞⢁⡴⣻⠃⡴⣿⠀⡏⣹⠀⢸⣧⠘⣷⣄⠳⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⡥⠖⠉⢰⢃⡞⢡⠇⣼⡇⡟⣇⠘⡏⢦⠸⡌⠓⠾⠶⠀⠀⠀⠀⠀
+⠀⠀⠀⠉⠀⠀⢠⣷⠋⠀⡾⣰⠋⣇⣧⠸⡆⣷⠈⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢚⡁⠀⢀⣷⠃⠀⠸⣿⠀⠙⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+================================================================================
+        """
+    },
+    4: {
+        "key": "ember_sovereign",
+        "name": "Ember Sovereign",
+        "type": "Magma Dragon",
+        "hp": 220,
+        "damage": 20,
+        "description": "A magma dragon burning through geothermal vents.",
+        "art": r"""
+
+================================================================================
+        🐉E M B E R   S O V E R E I G N ‑ m a g m a   d r a g o n🐉
+================================================================================
+          ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣤⡼⠀⢀⡀⣀⢱⡄⡀⠀⠀⠀⢲⣤⣤⣤⣤⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⡿⠛⠋⠁⣤⣿⣿⣿⣧⣷⠀⠀⠘⠉⠛⢻⣷⣿⣽⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣴⣞⣽⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠠⣿⣿⡟⢻⣿⣿⣇⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣟⢦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣠⣿⡾⣿⣿⣿⣿⣿⠿⣻⣿⣿⡀⠀⠀⠀⢻⣿⣷⡀⠻⣧⣿⠆⠀⠀⠀⠀⣿⣿⣿⡻⣿⣿⣿⣿⣿⠿⣽⣦⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⣼⠟⣩⣾⣿⣿⣿⢟⣵⣾⣿⣿⣿⣧⠀⠀⠀⠈⠿⣿⣿⣷⣈⠁⠀⠀⠀⠀⣰⣿⣿⣿⣿⣮⣟⢯⣿⣿⣷⣬⡻⣷⡄⠀⠀⠀
+⠀⠀⢀⡜⣡⣾⣿⢿⣿⣿⣿⣿⣿⢟⣵⣿⣿⣿⣷⣄⠀⣰⣿⣿⣿⣿⣿⣷⣄⠀⢀⣼⣿⣿⣿⣷⡹⣿⣿⣿⣿⣿⣿⢿⣿⣮⡳⡄⠀⠀
+⠀⢠⢟⣿⡿⠋⣠⣾⢿⣿⣿⠟⢃⣾⢟⣿⢿⣿⣿⣿⣾⡿⠟⠻⣿⣻⣿⣏⠻⣿⣾⣿⣿⣿⣿⡛⣿⡌⠻⣿⣿⡿⣿⣦⡙⢿⣿⡝⣆⠀
+⠀⢯⣿⠏⣠⠞⠋⠀⣠⡿⠋⢀⣿⠁⢸⡏⣿⠿⣿⣿⠃⢠⣴⣾⣿⣿⣿⡟⠀⠘⢹⣿⠟⣿⣾⣷⠈⣿⡄⠘⢿⣦⠀⠈⠻⣆⠙⣿⣜⠆
+⢀⣿⠃⡴⠃⢀⡠⠞⠋⠀⠀⠼⠋⠀⠸⡇⠻⠀⠈⠃⠀⣧⢋⣼⣿⣿⣿⣷⣆⠀⠈⠁⠀⠟⠁⡟⠀⠈⠻⠀⠀⠉⠳⢦⡀⠈⢣⠈⢿⡄
+⣸⠇⢠⣷⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⠿⠿⠋⠀⢻⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢾⣆⠈⣷
+⡟⠀⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣶⣤⡀⢸⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⢹
+⡇⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠈⣿⣼⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠃⢸
+⢡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⠶⣶⡟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼
+⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡁⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣼⣀⣠⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+=================================================================================
+        """
+    },
+    5: {
+        "key": "rift_monarch",
+        "name": "The Rift Monarch",
+        "type": "Cosmic-Coral Being",
+        "hp": 350,
+        "damage": 25,
+        "description": "The final cosmic-coral being altering reality itself.",
+        "art": r"""
+
+==================================================================================
+🌌 👑 T h e  R i f t  M o n a r c h  —  a  c o s m i c ‑ c o r a l  b e i n g🌌 👑
+==================================================================================
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⢳⠀⠀⢠⠁⢀⡇⠀⠀⠀⠀⠀⣠⠞⠁⣤⡟⠁⣠⠔⠋⠁⠀⠀⠀⠀⠀⠀⠀⣄⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠔⢚⡟⠀⢀⣀⡤⠤⠄⠒⠒⢒⣶⠀⠀⠈⠇⠀⢸⡀⠀⣸⠀⠸⠀⠀⠀⠀⣠⠞⠁⣠⡾⠋⣠⠞⠁⠀⠀⠀⣀⠤⠔⠒⠚⣛⣛⣛⣓⣒⣶⢤⣴⣾⠃⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⠋⢀⡴⠿⠒⢉⣉⣠⣤⡄⠀⠒⠚⠛⠒⠒⠒⠒⢺⣤⠈⡇⢀⡇⢠⠇⠀⠀⣠⠞⠁⢀⡴⡿⢁⡜⠁⠀⢀⡤⠒⠉⣠⠤⠒⢉⣉⡥⠖⠒⠉⣩⠝⠋⠑⢻⠛⠶⢤⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⠔⣁⡤⠖⠉⣓⣶⣿⣯⡔⠚⣉⣠⠤⠴⠒⠒⠀⠉⠉⠉⠉⢯⠀⣷⣸⠀⡞⠀⣠⠞⠁⠀⣰⢫⠞⢀⡞⠀⡠⠖⠉⢀⠴⣊⡥⠖⠊⠉⠀⢀⣠⠔⠋⠁⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣴⢻⣞⡥⠖⠊⣩⠟⠉⣤⣶⣿⣛⣁⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⢻⡇⢠⣁⡞⢁⣀⣤⣾⠗⢁⡴⣋⠔⠋⢀⣤⡾⠟⠉⠁⠀⠀⢀⡤⠖⠉⠀⠀⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢠⡿⣱⣟⣽⡄⣠⠞⠁⢐⣾⠉⣀⣀⡤⠴⠚⠉⠀⠀⠀⠀⠀⣠⠴⢺⠟⡇⣸⣤⣿⡿⠾⠿⢿⣿⣿⡾⠟⠚⢁⣠⡶⠟⠁⠀⠀⢀⡠⠖⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢠⣿⠟⡿⢋⠸⡰⠁⣠⡶⠏⠀⠙⢓⣒⣒⣦⡄⠀⠀⠀⣠⣴⠯⣤⠴⣷⠞⠉⠁⣤⡥⢶⠶⣶⡭⠥⠒⠛⠛⠚⠛⠛⠂⢀⣠⠴⠚⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⠏⢘⡟⢹⡼⣡⣾⠽⠒⠊⠉⠉⠀⠀⠀⠀⠀⠀⠀⢸⣿⠶⠚⠉⠀⠀⠀⠦⠤⢖⣗⡴⠚⠁⠉⠑⢤⣶⡄⠀⣀⡴⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣆⠀⠀⠀⠀⠀
+⠀⠀⡜⠁⠀⠉⠁⢸⡟⣉⣤⡴⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⢱⠦⣤⣀⠛⠛⡆⠀⣤⣿⣀⡀⠀⠀⢀⣼⢃⡙⠟⠦⠤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡆⠀⠀⠀⠀
+⠀⣼⠁⠀⠠⣦⢀⡟⣩⣾⠥⠖⠒⠒⠒⣤⡀⠀⠀⠀⠀⠀⠀⠀⠸⠏⠀⠸⠾⢻⣦⣠⠴⠚⢛⠉⢩⣭⡟⠋⣿⠎⢥⣤⣤⡀⠀⠀⠀⠉⠉⠉⠓⠲⠤⢤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀
+⢀⠃⣷⠀⢰⣿⣸⠙⠋⠀⣀⠔⠋⠉⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠀⠈⠛⣿⣷⣄⣹⠷⠀⠞⢻⡶⠀⠀⠈⠙⠷⣦⡍⠉⠑⠒⠲⠤⠤⣄⣀⡀⠀⠀⠉⠙⠒⠦⢤⣀⡀⠀⠀⠀⠀⠀⠀⠙⡄⠀⠀
+⡸⢸⡍⠷⠈⠉⢹⠀⢀⡞⠁⠀ ⠀⣠⠴⠊⢉⠁⠀⠉⠙⠒⠤⣀⠀⠀⠀⠀⠀⠀⢀⣇⡾⡆⠳⣄⠰⣦⡄⠀⠀⠀⠀⠀⠀⠈⠳⢄⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠒⠒⠦⠤⢄⣈⣉⠓⠦⢤⣀⡀⠀⠘⢦⠀
+⡇⠀⢳⣦⠀⣼⣾⣇⡎⠀⠀ ⢠⣾⣡⣄⣰⠋⠉⠉⠓⠲⠤⣀⣀⠉⠙⠒⣺⠒⢒⣛⣁⣤⡷⠖⠋⠐⢋⣠⠼⠻⣦⣄⠀⠀⠀⠀⠀⠙⠦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠒⠒⠯⠽⠶⣦⣷
+⡇⣄⢸⠸⣼⡇⠀⢹⡀⠀ ⢠⣿⠋⡉⢰⠁⠀⠀⠀⠀⠀⢠⡄⠘⢳⣶⣦⣿⣿⠿⠛⠉⠀⢀⣀⡤⠖⢫⠇⠀⠀⡼⣎⠙⠦⣄⡀⠀⠀⠀⠈⠳⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠞⠁⠀
+⡇⢿⡃⠀⠈⡿⡄⠀⠳⡀ ⠾⠃⠀⣧⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢨⣿⡿⠟⠛⢀⣠⡴⠾⠛⠉⠀⢀⠏⠀⠀⣰⠃⠘⢆⠀⠀⠉⠲⢄⡀⠀⠀⠀⠙⠦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀
+⢻⠈⡑⢦⡀⣷⠘⠀⣶⢽⣄⠀⠀⠻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠦⠴⠾⠛⠋⠻⠛⠿⢟⡳⠿⢄⡀⣠⠃⠀⠀⠈⢧⡀⠀⢰⡄⠉⠲⢄⡀⠀⠀⠈⠳⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀
+⠘⡆⠟⠲⣍⡀⢀⡀⠙⠀⠈⠓⢄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢩⢷⡖⠛⢧⠀⠀⠀⠀⡼⢳⠆⠐⠃⠀⠀⢦⣉⠲⢤⣀⠀⠀⠑⢦⡀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠹⣼⣄⠸⡷⢌⣿⠦⡀⠀⠀⠀⠸⣯⣓⠒⠤⢄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⠀⠀⢧⠀⢀⡼⠁⠈⢳⠄⠀⠀⠤⠤⠚⠀⠀⠈⠳⣤⣀⠀⠙⢦⣀⠀⠀⣸⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠈⢿⣁⣳⡤⠈⢣⣄⠀⠀⠀⠀⠈⢛⣛⠀⠀⠀⠉⠉⠓⠒⣠⠤⢤⣶⠦⠤⢤⣀⡀⠀⠀⢠⣴⣞⣒⠒⠚⣷⠋⠀⠀⣠⠋⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢮⡙⠢⣤⣉⠳⣄⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ ==================================================================================
+        """
+    }
+}
+
+NPCS = {
+    1: {
+        "name": "Kael, the Bloomkeeper",
+        "dialogue": "The flowers whisper at night. Some remember the dead."
+    },
+    2: {
+        "name": "Vex, the Steelpan Trader",
+        "dialogue": "Nothing in Steelpan City is free. Not even the truth."
+    },
+    3: {
+        "name": "Oruun, the Abyssal Guardian",
+        "dialogue": "The ocean hides things that should never awaken."
+    },
+    4: {
+        "name": "Sera, the Ember Medic",
+        "dialogue": "My remedies might help you survive the volcano."
+    },
+    5: {
+        "name": "Astra, the Sky-Reef Wanderer",
+        "dialogue": "The Rift is changing reality. Be careful who you trust."
+    }
+}
+
+RUMOURS = {
+    1: "The Bloom Tyrant feeds on the island's life force.",
+    2: "The machines fear a mysterious sound.",
+    3: "Queen Abyssara guards a secret beneath the ocean.",
+    4: "The Ember Sovereign sleeps beneath rivers of lava.",
+    5: "The Rift Monarch knows why your journey began."
+}
+
+#Part 2 — The game engine and exploration
+
+
+
+class ROAMGame:
+
+    def __init__(self, username, profile):
+        self.username = username
+        self.race = profile["race"]
+        self.signature = profile["signature"]
+
+        self.max_hp = profile["hp"]
+        self.hp = self.max_hp
+
+        self.max_energy = profile["energy"]
+        self.energy = self.max_energy
+
+        self.credits = 100
+        self.level = 1
+        self.enemy_index = 0
+        self.game_over = False
+
+        print(f"\nWelcome, {self.username}!")
+        print(f"Character: {self.race}")
+        print(f"Special ability: {self.signature}")
+
+    def explore(self):
+        roll = random.randint(1, 8)
+        print(f"\nExploration D8 roll: {roll}")
+
+        if roll <= 2:
+            damage = random.randint(5, 12)
+            self.hp = max(0, self.hp - damage)
+            print(f"A hostile creature attacks! You lose {damage} HP.")
+
+        elif roll <= 4:
+            self.credits += 10
+            print("A helpful traveller gives you 10 credits.")
+
+        elif roll <= 6:
+            reward = random.randint(10, 25)
+
+            if self.race == "Human":
+                reward += 5
+
+            self.credits += reward
+            print(f"You discover treasure worth {reward} credits.")
+
+        else:
+            old_energy = self.energy
+            self.energy = min(self.max_energy, self.energy + 10)
+            print(f"You recover {self.energy - old_energy} energy.")
+
+    def player_attack(self, enemy):
+        roll = random.randint(1, 8)
+        print(f"\nCombat D8 roll: {roll}")
+
+        if roll <= 3:
+            print("Your attack misses!")
+            return 0
+
+        damage_table = {
+            4: 15,
+            5: 20,
+            6: 30,
+            7: 35,
+            8: 40
+        }
+
+        damage = damage_table[roll]
+
+        if enemy["name"] == "Baseline Titan":
+            damage = max(5, damage - 5)
+            print("The Titan's armour reduces your damage!")
+
+        if roll == 4:
+            print("Normal hit!")
+        elif roll == 5:
+            print("Strong hit!")
+        elif roll == 6:
+            print("Critical hit!")
+        else:
+            print("Powerful breakthrough!")
+
+        print(f"You deal {damage} damage!")
+        return damage
+
+    def special_attack(self):
+        energy_cost = 10 if self.race == "Cyborg" else 15
+
+        if self.energy < energy_cost:
+            print("Not enough energy!")
+            return None
+
+        self.energy -= energy_cost
+        damage = 35 + random.randint(1, 8)
+
+        if self.race == "Alien":
+            damage += 5
+
+        print(f"\n{self.signature} activated!")
+        print(f"You deal {damage} special damage!")
+
+        return damage
+
+#Part 3 — Combat and enemies
+
+
+
+    def fight(self, enemy, is_boss=False):
+        enemy_hp = enemy["hp"]
+        enemy_max_hp = enemy_hp
+
+        print("\n" + "=" * 45)
+
+        if is_boss:
+            print(f"BOSS: {enemy['name']}")
+            print(f"Type: {enemy['type']}")
+            print(enemy["description"])
+        else:
+            print(f"An enemy appears: {enemy['name']}!")
+
+        print("=" * 45)
+
+        while enemy_hp > 0 and self.hp > 0:
+            print(f"\nYour HP: {self.hp}/{self.max_hp}")
+            print(f"Energy: {self.energy}/{self.max_energy}")
+            print(f"{enemy['name']} HP: {enemy_hp}/{enemy_max_hp}")
+            print(f"Credits: {self.credits}")
+
+            print("[1] Normal attack")
+            print("[2] Special ability")
+            print("[3] Heal for 10 credits")
+            print("[4] Retreat")
+
+            action = input("Choose your move: ").strip()
+
+            if action == "4":
+                print("You retreat from the fight!")
+                return False
+
+            elif action == "1":
+                damage = self.player_attack(enemy)
+
+            elif action == "2":
+                damage = self.special_attack()
+
+                if damage is None:
+                    continue
+
+            elif action == "3":
+                if self.hp >= self.max_hp:
+                    print("Your health is already full.")
+                    continue
+
+                if self.credits < 10:
+                    print("You don't have enough credits.")
+                    continue
+
+                self.credits -= 10
+                old_hp = self.hp
+                self.hp = min(self.max_hp, self.hp + 20)
+
+                print(f"You recover {self.hp - old_hp} HP.")
+                damage = 0
+
+            else:
+                print("Choose 1, 2, 3, or 4.")
+                continue
+
+            enemy_hp = max(0, enemy_hp - damage)
+
+            if enemy_hp <= 0:
+                break
+
+            if enemy["name"] == "Bloom Tyrant":
+                enemy_hp = min(enemy_max_hp, enemy_hp + 5)
+                print("Bloom Tyrant regenerates 5 HP!")
+
+            self.hp = max(0, self.hp - enemy["damage"])
+            print(
+                f"{enemy['name']} counterattacks! "
+                f"You lose {enemy['damage']} HP."
+            )
+
+        if self.hp <= 0:
+            print("\nYou have been defeated!")
+            return False
+
+        print(f"\nVictory! You defeated {enemy['name']}!")
+
+        reward = 50 * self.level if is_boss else 20
+        self.credits += reward
+        print(f"You receive {reward} credits.")
+
+        return True
+
+#Part 4 — NPC dialogue and paid healing
+
+
+
+    def talk(self):
+        npc = NPCS[self.level]
+
+        print("\n" + "=" * 45)
+        print(f"You encounter {npc['name']}!")
+        print(f'{npc["name"]}: "{npc["dialogue"]}"')
+        print("=" * 45)
+
+        print("[1] Pay 10 credits - 40% healing chance")
+        print("[2] Pay 25 credits - 70% healing chance")
+        print("[3] Pay 50 credits - 95% healing chance")
+        print("[4] Ask for a rumour")
+        print("[5] Trust them")
+        print("[6] Question them")
+        print("[7] Threaten them")
+        print("[8] Walk away")
+
+        choice = input("Your decision\n: ").strip()
+
+        offers = {
+            "1": (10, 40, 10, 20),
+            "2": (25, 70, 20, 35),
+            "3": (50, 95, 30, 50)
+        }
+
+        if choice in offers:
+            cost, chance, minimum, maximum = offers[choice]
+
+            if self.hp >= self.max_hp:
+                print("Your HP is already full. Save your credits!")
+                return
+
+            if self.credits < cost:
+                print("You don't have enough credits!")
+                return
+
+            self.credits -= cost
+
+            print(f"You pay {cost} credits.")
+            print(f"Success chance: {chance}%")
+
+            roll = random.randint(1, 100)
+
+            if roll <= chance:
+                healing = random.randint(minimum, maximum)
+                old_hp = self.hp
+                self.hp = min(self.max_hp, self.hp + healing)
+
+                print(f"{npc['name']} gives you a healing remedy!")
+                print(f"You recover {self.hp - old_hp} HP.")
+            else:
+                print("The remedy fails. Your credits are lost.")
+
+        elif choice == "4":
+            print(f'\n{npc["name"]}: "{RUMOURS[self.level]}"')
+
+        elif choice == "5":
+            self.credits += 5
+            print("The NPC trusts you and gives you 5 credits.")
+
+        elif choice == "6":
+            old_energy = self.energy
+            self.energy = min(self.max_energy, self.energy + 10)
+            print(f"{npc['name']} reveals a hidden clue.")
+            print(f"You recover {self.energy - old_energy} energy.")
+
+        elif choice == "7":
+            self.credits += 10
+            self.hp = max(0, self.hp - 5)
+            print("You take 10 credits but lose 5 HP.")
+            print("Your actions may have consequences...")
+
+        elif choice == "8":
+            print("You leave and continue your adventure.")
+
+        else:
+            print("Invalid choice. Select 1-8.")
+
+    def show_status(self):
+        print("\n" + "=" * 45)
+        print(f"PLAYER: {self.username}")
+        print(f"RACE: {self.race}")
+        print(f"SPECIAL: {self.signature}")
+        print(f"LEVEL: {self.level}/5")
+        print(f"LOCATION: {LEVEL_NAMES[self.level]}")
+        print(f"HP: {self.hp}/{self.max_hp}")
+        print(f"ENERGY: {self.energy}/{self.max_energy}")
+        print(f"CREDITS: {self.credits}")
+        print(f"ENEMIES DEFEATED: {self.enemy_index}/3")
+        print("=" * 45)
+        
+#Part 5 — Level progression and main game loop
+
+
+    def advance_level(self):
+        if self.level == 5:
+            print("\n" + "=" * 50)
+            print("YOU HAVE DEFEATED THE RIFT MONARCH!")
+            print("You have conquered all five levels of ROAM!")
+            print("But something stirs beyond the sky-reef...")
+            print("=" * 50)
+
+            self.game_over = True
+            return
+
+        self.level += 1
+        self.enemy_index = 0
+
+        old_hp = self.hp
+        old_energy = self.energy
+
+        self.hp = min(self.max_hp, self.hp + 20)
+        self.energy = min(self.max_energy, self.energy + 15)
+        
+        print("=" * 45)
+        print(f"\nYou advance to Level {self.level}!")
+        print(f"Location: {LEVEL_NAMES[self.level]}")
+        print(LEVEL_DESCRIPTIONS[self.level])
+        print(f"Recovered {self.hp - old_hp} HP.")
+        print(f"Recovered {self.energy - old_energy} energy.")
+        print("=" * 45)
+
+    def run(self):
+        while not self.game_over:
+            if self.hp <= 0:
+                print("\nYour journey has ended.")
+                print("[1] Restart")
+                print("[2] Exit")
+
+                choice = input("Choose: ").strip()
+
+                if choice == "1":
+                    main()
+                else:
+                    print("Goodbye, traveller!")
+
+                return
+
+            print("\n" + "=" * 50)
+            print(f"ROAM - LEVEL {self.level}/5")
+            print(f"LOCATION: {LEVEL_NAMES[self.level]}")
+            print(LEVEL_DESCRIPTIONS[self.level])
+            print(f"HP: {self.hp}/{self.max_hp}")
+            print(f"ENERGY: {self.energy}/{self.max_energy}")
+            print(f"CREDITS: {self.credits}")
+            print("=" * 50)
+
+            print("[1] Explore")
+            print("[2] Fight next enemy")
+            print("[3] Challenge boss")
+            print("[4] Talk to NPC")
+            print("[5] View status")
+            print("[6] Exit game")
+
+            choice = input("What will you do? ").strip()
+
+            if choice == "1":
+                self.explore()
+
+            elif choice == "2":
+                enemies = ENEMIES[self.level]
+
+                if self.enemy_index >= len(enemies):
+                    print("All enemies are defeated! Challenge the boss.")
+                    continue
+
+                enemy = enemies[self.enemy_index]
+
+                if self.fight(enemy):
+                    self.enemy_index += 1
+                    print(f"Enemies defeated: {self.enemy_index}/3")
+
+                    if self.enemy_index == 3:
+                        print("All enemies defeated!")
+                        print("The boss awaits...")
+
+            elif choice == "3":
+                if self.enemy_index < 3:
+                    remaining = 3 - self.enemy_index
+                    print(
+                        f"You must defeat {remaining} more enemy/enemies "
+                        "before challenging the boss."
+                    )
+                    continue
+
+                boss = BOSSES[self.level]
+
+                if self.fight(boss, is_boss=True):
+                    self.advance_level()
+
+            elif choice == "4":
+                self.talk()
+
+            elif choice == "5":
+                self.show_status()
+
+            elif choice == "6":
+                print("Goodbye, traveller. The Rift awaits!")
+                self.game_over = True
+
+            else:
+                print("Invalid choice. Select 1-6.")
+
+
+def main():
+    print("=" * 50)
+    print("WELCOME TO ROAM: MYSTERIES OF THE RIFT")
+    print("=" * 50)
+
+    username = input("Enter your traveller name: ").strip()
+
+    if not username:
+        username = "Traveller"
+
+    print("\nChoose your character:")
+    print("[1] Human")
+    print("[2] Hybrid")
+    print("[3] Cyborg")
+    print("[4] Alien")
+
+    choice = input("Select a profile (1-4): ").strip()
+
+    if choice not in PROFILE_SPECS:
+        print("Invalid choice. Defaulting to Human.")
+        choice = "1"
+
+    game = ROAMGame(username, PROFILE_SPECS[choice])
+    game.run()
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (KeyboardInterrupt, EOFError):
+        print("\nROAM session ended. Goodbye, traveller.")
